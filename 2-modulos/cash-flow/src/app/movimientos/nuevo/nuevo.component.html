@@ -1,6 +1,7 @@
 <h5>Nuevo Movimiento</h5>
-<!--(click) es un evento-->
-<span [hidden]="mostrarFormulario">
+<!--(click) es un evento [hidden] es una propiedad --> 
+
+<span [hidden]="mostrarFormulario" >
   <button (click)="mostrarFormulario=true">Mostrar Formulario</button>
 </span>
 <span [hidden]="!mostrarFormulario">
@@ -11,12 +12,12 @@
 <div *ngIf="mostrarFormulario" class="container" >
   <div class="row">
     <label for="" class="column">Formulario: </label>
-    <!--asignación de un valor a un elemento-->
-    <input type="text" class="column" ngModel="Nuevo Movimiento">
+    <!--asignación de un valor literal a un elemento-->
+    <input type="text" class="column" ngModel="Formulario para Alta de un Nuevo Movimiento">
   </div>
   <div class="row">
     <label for="" class="column">Fecha: </label>
-    <!--propiedad de solo lectura, desde el modelo hacia el elemento-->
+    <!--propiedad de solo lectura, desde el modelo hacia el elemento de la vista-->
     <input type="text" [ngModel]="movimiento.fecha" class="column">
   </div>
   <div class="row">
@@ -66,7 +67,7 @@
   <div>
     <em class="row">Movimento en curso: </em>
     <code class="row">
-      {{ movimiento | json }}
+      <strong>{{ movimiento | json }}</strong>
     </code>
   </div>
   <div>

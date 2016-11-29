@@ -22,4 +22,11 @@ módulos: agrupaciones lógicas de componentes y otras cosas
 componentes: resuelven funcionalidades visualmente = plantilla(html) + clase(ts)
 
 
+Módulos (países)
+  que importan de otros países
+  construyen (declaran) bienes
+  algunos de esos los exportan
+Otros módulos (paises) importan lo que los anteriores exportan
+
+
 (https://scotch.io/tutorials/how-to-deal-with-different-form-controls-in-angular-2)

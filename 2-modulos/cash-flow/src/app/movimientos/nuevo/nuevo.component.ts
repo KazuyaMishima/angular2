@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nuevo.component.css']
 })
 export class NuevoComponent implements OnInit {
-  tipos: any[] = [
+  public tipos: any[] = [
     { id: 1, text: "Ingreso" },
     { id: 2, text: "Gasto" }];
+  
   categoriasTipos: any[] = [
     { id: 1, text: "Nómina", type: 1 },
     { id: 2, text: "Ventas", type: 1 },
@@ -17,6 +18,7 @@ export class NuevoComponent implements OnInit {
     { id: 5, text: "Compras", type: 2 },
     { id: 6, text: "Domiciliaciones", type: 2 },
     { id: 7, text: "Impuestos", type: 2 }];
+  
   categorias: any[] = [];
 
   movimiento: any = {};

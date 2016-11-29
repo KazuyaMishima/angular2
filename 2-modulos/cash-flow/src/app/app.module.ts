@@ -12,17 +12,19 @@ import { MovimientosModule } from './movimientos/movimientos.module'
 
 // decorador que define un módulo
 @NgModule({
-  declarations: [
-    AppComponent
-  ], // cosas declaradas en este módulo
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MovimientosModule // el módulo de movimientos
-  ], // otros módulos que necesitamos para que este funcione
+  ],
+  declarations: [
+    AppComponent
+  ], // cosas declaradas en este módulo // otros módulos que necesitamos para que este funcione
   providers: [] , // inyección de servicios comunes para la aplicación
-  bootstrap: [AppComponent] // componente raíz para el arranque
+  bootstrap: [
+    AppComponent
+  ] // componente raíz para el arranque
 })
 // los módulos son clases contendoras 
 // habitualmente con poco o ningún código

@@ -64,8 +64,17 @@
     <button (click)="guardarMovimiento()">Guardar</button>
   </div>
   <div class="row">
-    <code>
+    <em class="row">Movimento en curso: </em>
+    <code class="row">
       {{ movimiento | json }}
     </code>
+  </div>
+  <div class="row">
+    <em class="row">Lista de movimientos:</em>
+    <div class="row">
+      <code>
+        {{ movimientos | json }}
+      </code>
+    </div>
   </div>
 </div>

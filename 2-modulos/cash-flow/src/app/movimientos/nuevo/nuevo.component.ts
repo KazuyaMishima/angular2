@@ -15,11 +15,12 @@ export class NuevoComponent implements OnInit {
     { id: 3, text: "Intereses", type: 1 },
     { id: 4, text: "Hipoteca", type: 2 },
     { id: 5, text: "Compras", type: 2 },
-    { id: 6, text: "Domicialiaciones", type: 2 },
+    { id: 6, text: "Domiciliaciones", type: 2 },
     { id: 7, text: "Impuestos", type: 2 }];
   categorias: any[] = [];
 
   movimiento: any = {};
+  movimientos: any[] = [];
 
   constructor() { }
 
@@ -41,7 +42,8 @@ export class NuevoComponent implements OnInit {
   }
 
   guardarMovimiento() {
-    console.log(this.movimiento);
+    let clone = Object.assign({}, this.movimiento);
+    this.movimientos.push(clone);
   }
 }
 

@@ -37,7 +37,7 @@
         <td>{{ movimiento.fecha | date }}</td>
         <td>{{ movimiento.tipo }}</td>
         <td>{{ movimiento.categoria }}</td>
-        <td>{{ movimiento.importe | number}}</td>
+        <td [ngClass]="{tipo1: movimiento.tipo==1, tipo2: movimiento.tipo==2}" >{{ movimiento.importe | number}}</td>
       </tr>
     </tbody>
   </table>

@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-nuevo',
   templateUrl: './nuevo.component.html',
   styleUrls: ['./nuevo.component.css']
 })
+/**
+ * Clase del componente nuevo movimiento
+ * */
 export class NuevoComponent implements OnInit {
+  
+  /**
+   * Muestra u oculta el formulario
+   */
+  public formularioVisible: boolean = false;
+
+  public mostrarFormulario = () => {
+    this.formularioVisible = true;
+  }
+  
+  public ocultarFormulario = () => {
+    this.formularioVisible = false;
+  }
+
+  /**
+   * Tipos de movimientos
+   */
   public tipos: any[] = [
     { id: 1, text: "Ingreso" },
-    { id: 2, text: "Gasto" }];
-  
+    { id: 2, text: "Gasto" }
+  ];
+  /**
+   * Categorías, por tipo de movimiento
+   */
   categoriasTipos: any[] = [
     { id: 1, text: "Nómina", type: 1 },
     { id: 2, text: "Ventas", type: 1 },
@@ -21,10 +44,16 @@ export class NuevoComponent implements OnInit {
   
   categorias: any[] = [];
 
+  /**
+   * Movimiento en curso
+   *  */
   movimiento: any = {};
+  /**
+   * Base de datos de movimientos
+   */
   movimientos: any[] = [];
 
-  constructor() { }
+  constructor( ) { /** VACÍO */}
 
   /**
   * arranque del componente 
@@ -38,9 +67,13 @@ export class NuevoComponent implements OnInit {
     this.cambioTipo();
   }
 
+  /**
+   *
+   */
   cambioTipo() {
     // recargar categorías cuando cambiamos de tipo de movimiento
-    this.categorias = this.categoriasTipos.filter(c => c.type === this.movimiento.tipo);
+    this.categorias = this.categoriasTipos
+      .filter(c => c.type === this.movimiento.tipo);
   }
 
   guardarMovimiento() {

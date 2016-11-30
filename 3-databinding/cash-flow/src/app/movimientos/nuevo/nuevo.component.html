@@ -1,15 +1,15 @@
 <h5>Nuevo Movimiento</h5>
 <!--(click) es un evento [hidden] es una propiedad --> 
 
-<span [hidden]="mostrarFormulario" >
-  <button (click)="mostrarFormulario=true">Mostrar Formulario</button>
+<span [hidden]="formularioVisible" >
+  <button (click)="mostrarFormulario()">Mostrar Formulario</button>
 </span>
-<span [hidden]="!mostrarFormulario">
-  <button (click)="mostrarFormulario=false" >Ocultar Formulario</button>
+<span [hidden]="!formularioVisible">
+  <button (click)="ocultarFormulario()" >Ocultar Formulario</button>
 </span>
 
 <!-- * directivas estructurales-->
-<div *ngIf="mostrarFormulario" class="container" >
+<div *ngIf="formularioVisible" class="container" >
   <div class="row">
     <label for="" class="column">Formulario: </label>
     <!--asignación de un valor literal a un elemento-->

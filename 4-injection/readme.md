@@ -3,7 +3,7 @@
 Comunicación entre componentes mediante Servicios Inyectables con datos Observables
 
 ### Guía
-- `ng g s movimientos/datos` :  crea el servicio de datos, pero no lo engancah en el módulo
+- `ng g s movimientos/datos` :  crea el servicio de datos, pero no lo engancha en el módulo
 - `movimientos.module.ts` : registro del servicio como un proveedor
 - `nuevo.component.ts` : declara dependencia de DatosService y delega responsabilidad 
 - `datos.model.ts` : modelos de datos coninterfaces y clases

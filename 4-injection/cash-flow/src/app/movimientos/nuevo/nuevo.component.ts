@@ -12,6 +12,7 @@ export class NuevoComponent implements OnInit {
   categorias: MaestroTipoModel[] = [];
   movimiento: MovimientoModel;
 
+  
   // las dependencias se declaran como parámetros del constructor  
   /** Este componente depende del objeto DatosService */
   constructor(private datosService: DatosService) {

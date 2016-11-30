@@ -15,7 +15,7 @@ import { Subject } from 'rxjs/Subject';
 // decoración para marcarlo como inyectable
 @Injectable()
 export class DatosService {
-  /** Tipos de MovimientosModule. Es un arrya de datos maestros */
+  /** Tipos de MovimientosModule. Es un array de datos maestros */
   public tipos: MaestroModel[] = [
     { id: 1, text: "Ingreso" },
     { id: 2, text: "Gasto" }];

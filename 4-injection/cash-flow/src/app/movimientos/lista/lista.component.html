@@ -1,6 +1,44 @@
-<p>
-  lista works!
-</p>
+<h5>Listado de Movimientos</h5>
 <!--el pipe async se subscribe a un observable-->
 <!--los pipes se pueden entubar-->
-{{ movimientos$ | async | json }}
+<blockquote>
+  <p><em>Modo JSON.</em></p>
+</blockquote>
+<div class="row">
+  <code>
+        {{ movimientos$ | async | json }}
+  </code>
+</div>
+<blockquote>
+  <p><em>Modo lista.</em></p>
+</blockquote>
+<div class="row">
+  <ul>
+    <li *ngFor="let movimiento of movimientos$ | async">
+      {{ movimiento | json }}
+    </li>
+  </ul>
+</div>
+<blockquote>
+  <p><em>Modo Tabla.</em></p>
+</blockquote>
+<div class="row">
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Categoría</th>
+        <th>Importe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movimiento of movimientos$ | async">
+        <td>{{ movimiento.fecha | date }}</td>
+        <td>{{ movimiento.tipo }}</td>
+        <td>{{ movimiento.categoria }}</td>
+        <td>{{ movimiento.importe | number}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,30 +1,33 @@
-<!--(click) es un evento-->
-<button (click)="mostrar=true">Mostrar Formulario</button>
-<!--* directivas estrucutrales-->
-<div *ngIf="mostrar">
-  <div>
-    <label for="">Formulario</label>
-    <!--asignación de un valor a un elemento-->
-    <input type="text" ngModel="{{movimiento.fecha}}">
+<h5>Nuevo Movimiento</h5>
+<!--(click) es un evento [hidden] es una propiedad --> 
+
+<span [hidden]="mostrarFormulario" >
+  <button (click)="mostrarFormulario=true">Mostrar Formulario</button>
+</span>
+<span [hidden]="!mostrarFormulario">
+  <button (click)="mostrarFormulario=false" >Ocultar Formulario</button>
+</span>
+
+<!-- * directivas estructurales-->
+<div *ngIf="mostrarFormulario" class="container" >
+  <div class="row">
+    <label for="" class="column">Formulario: </label>
+    <!--asignación de un valor literal a un elemento-->
+    <input type="text" class="column" ngModel="Formulario para Alta de un Nuevo Movimiento">
   </div>
-  <div>
-    <label for="">Fecha</label>
-    <!--propiedad de solo lectura, desde el modelo hacia el elemento-->
-    <input type="text" [ngModel]="movimiento.fecha">
+  <div class="row">
+    <label for="" class="column">Fecha: </label>
+    <!--propiedad de solo lectura, desde el modelo hacia el elemento de la vista-->
+    <input type="text" [ngModel]="movimiento.fecha" class="column">
   </div>
-  <div>
-    <label for="">Empresa</label>
-    <!--propiedad de solo lectura, y evento para escritura-->
-    <input type="text" [ngModel]="movimiento.empresa" (ngModelChange)="movimiento.empresa=$event">
-  </div>
-  <div>
-    <label for="">Importe</label>
+  <div class="row">
+    <label for="" class="column">Importe: </label>
     <!--banana in a box, lectura y escritura-->
-    <input type="number" [(ngModel)]="movimiento.importe">
+    <input type="number" [(ngModel)]="movimiento.importe" class="column"> 
   </div>
-  <div>
-    <label for="">Tipo</label>
-    <div *ngFor="let tipo of tipos">
+  <div class="row">
+    <label for="" class="column">Tipo: </label>
+    <div *ngFor="let tipo of tipos" class="column">
       <!--for es un atributo, requiere una sintaxis especial-->
       <label [attr.for]="tipo.id">
         <!--
@@ -47,10 +50,10 @@
     </div>
   </div>
   <!--cuando cambia el tipo se recargan las categorías-->
-  <div>
-    <label for="">Categoría</label>
+ <div class="row">
+    <label for="" class="column">Categoría: </label>
     <!--las opciones se cargan con *ngFor-->
-    <select name="categoria" [(ngModel)]="movimiento.categoria">
+    <select name="categoria" [(ngModel)]="movimiento.categoria" class="column">
         <option 
             *ngFor="let categoria of categorias"
             [value]="categoria.id"> 
@@ -58,10 +61,21 @@
         </option>
     </select>
   </div>
-  <div>
+  <div class="row">
     <button (click)="guardarMovimiento()">Guardar</button>
   </div>
   <div>
-    {{ movimiento | json}}
+    <em class="row">Movimento en curso: </em>
+    <code class="row">
+      <strong>{{ movimiento | json }}</strong>
+    </code>
+  </div>
+  <div>
+    <em class="row">Lista de movimientos:</em>
+    <div class="row">
+      <code>
+        {{ movimientos | json }}
+      </code>
+    </div>
   </div>
 </div>

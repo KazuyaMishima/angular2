@@ -28,7 +28,8 @@ export class NuevoComponent implements OnInit {
    */
   public tipos: any[] = [
     { id: 1, text: "Ingreso" },
-    { id: 2, text: "Gasto" }
+    { id: 2, text: "Gasto" },
+    { id: 3, text: "Expediente" }
   ];
   /**
    * Categorías, por tipo de movimiento
@@ -41,7 +42,9 @@ export class NuevoComponent implements OnInit {
     { id: 5, text: "Compras", type: 2 },
     { id: 6, text: "Domiciliaciones", type: 2 },
     { id: 7, text: "Impuestos", type: 2 }];
-  
+  /**
+   * Categorias filtradas para el tipo del movimiento actual
+   */
   categorias: any[] = [];
 
   /**
@@ -64,13 +67,13 @@ export class NuevoComponent implements OnInit {
       importe: 0,
       tipo: this.tipos[0].id
     }
-    this.cambioTipo();
+    this.cambiarTipo();
   }
 
   /**
    *
    */
-  cambioTipo() {
+  cambiarTipo() {
     // recargar categorías cuando cambiamos de tipo de movimiento
     this.categorias = this.categoriasTipos
       .filter(c => c.type === this.movimiento.tipo);

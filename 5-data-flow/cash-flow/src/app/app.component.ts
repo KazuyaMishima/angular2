@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
 // los componentes son clases instanciables
 export class AppComponent {
   // propiedades para enlazar con la plantilla
-  title = 'app works!';
+  title = 'Cash Flow!';
 }

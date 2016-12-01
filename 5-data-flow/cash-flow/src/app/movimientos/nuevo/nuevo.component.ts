@@ -35,7 +35,7 @@ export class NuevoComponent implements OnInit {
   
   // emisión de eventos para cambios o pedir guardar el movimiento
   /** cuando el usuario hace click en un radio button de tipo */
-  usuarioCambioRadioButton() {
+  usuarioCambiarRadioButton() {
     this.usuarioCambiarTipo.emit(this.movimiento.tipo);
   }
   /** cuando el usuario hace click en el botón de guardado */

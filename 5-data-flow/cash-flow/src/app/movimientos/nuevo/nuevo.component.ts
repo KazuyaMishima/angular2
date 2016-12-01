@@ -14,7 +14,7 @@ export class NuevoComponent implements OnInit {
   // recibe datos vía propiedades
   /** propiedad para entrada de tipos de movimiento */
   @Input()
-  tipos: MaestroModel[] = [];
+  public tipos: MaestroModel[] = [];
   /** propiedad para entrada de categorias de movimiento */
   @Input() categorias: MaestroTipoModel[] = [];
   /** propiedad para entrada de un movimiento */
@@ -31,7 +31,7 @@ export class NuevoComponent implements OnInit {
   // es un componente tonto ()
   constructor() { }
 
-  ngOnInit() {  }
+  ngOnInit() {   }
   
   // emisión de eventos para cambios o pedir guardar el movimiento
   /** cuando el usuario hace click en un radio button de tipo */

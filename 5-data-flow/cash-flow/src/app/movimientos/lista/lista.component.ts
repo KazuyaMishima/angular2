@@ -10,9 +10,12 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./lista.component.css']
 })
 export class ListaComponent implements OnInit {
+  
+  //movimientos$: Observable<Movimiento[]>;
+
 
   // Recibe los datos vía propiedad desde su contenedor
-  /** Arrya de movimientos que debe pintar */
+  /** Array de movimientos que debe pintar */
   @Input('movimientos') movimientos: MovimientoModel[];  
 
   // Sin dependencias  

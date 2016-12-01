@@ -23,7 +23,10 @@ export class ListaComponent implements OnInit {
     // No se necesita suscripción si se usa async
     this.movimientos$ = this.datosService.getMovimientos$();
     // si se quiere se puede suscribir
-    this.movimientos$.subscribe(d=>console.log("Dato recibido: ", d));
+    this.movimientos$.subscribe(datos => console.log("Dato recibido: ", datos));
+    this.movimientos$.subscribe(function (d) {
+      console.log("Dato recibido: ", d);
+    });
   }
 
 }

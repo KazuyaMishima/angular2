@@ -6,9 +6,10 @@
 </blockquote>
 <div class="row">
   <code>
-        {{ movimientos$ | async | json }}
+      {{ movimientos$ | async | json }}
   </code>
 </div>
+
 <blockquote>
   <p><em>Modo lista.</em></p>
 </blockquote>
@@ -19,6 +20,7 @@
     </li>
   </ul>
 </div>
+
 <blockquote>
   <p><em>Modo Tabla.</em></p>
 </blockquote>
@@ -37,7 +39,7 @@
         <td>{{ movimiento.fecha | date }}</td>
         <td>{{ movimiento.tipo }}</td>
         <td>{{ movimiento.categoria }}</td>
-        <td [ngClass]="{tipo1: movimiento.tipo==1, tipo2: movimiento.tipo==2}" >{{ movimiento.importe | number}}</td>
+        <td [ngClass]="{ingreso: movimiento.tipo==1, gasto: movimiento.tipo==2}" >{{ movimiento.importe | number}}</td>
       </tr>
     </tbody>
   </table>

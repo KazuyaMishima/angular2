@@ -10,10 +10,13 @@ import { MovimientosComponent } from './movimientos.component';
 import { ListaComponent } from './lista/lista.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
 
+import { MovimientosRoutingModule } from './movimientos-routing.module';
+
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule ],// dependencias de otros módulos
+    FormsModule,
+    MovimientosRoutingModule ],// dependencias de otros módulos
   declarations: [
     MovimientosComponent,
     ListaComponent,

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MovimientosModule } from './movimientos/movimientos.module';
-import { HomeModule } from './home/home.module';
+// componentes necesarios
 import { HomeComponent } from './home/home.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 
@@ -20,11 +19,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    MovimientosModule, // el módulo de movimientos
-    HomeModule, // el módulo de bienvenida
     RouterModule.forRoot(routes)
-    ],
-  exports: [RouterModule],
+  ],
+  exports: [
+    RouterModule
+  ],
   providers: []
 })
 export class AppRoutingModule { }

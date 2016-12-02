@@ -1,27 +1,6 @@
 <h5>Listado de Movimientos</h5>
 <!--el pipe async ya no se usa, pues la propiedad mueve los datos -->
-<!--los pipes se pueden entubar-->
-<blockquote>
-  <p><em>Modo JSON.</em></p>
-</blockquote>
-<div class="row">
-  <code>
-        {{ movimientos | json }}
-  </code>
-</div>
-<blockquote>
-  <p><em>Modo lista.</em></p>
-</blockquote>
-<div class="row">
-  <ul>
-    <li *ngFor="let movimiento of movimientos">
-      {{ movimiento | json }}
-    </li>
-  </ul>
-</div>
-<blockquote>
-  <p><em>Modo Tabla.</em></p>
-</blockquote>
+<!--los pipes se pueden entubar $ | async-->
 <div class="row">
   <table>
     <thead>
@@ -33,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let movimiento of movimientos">
+      <tr *ngFor="let movimiento of movimientos ">
         <td>{{ movimiento.fecha | date }}</td>
         <td>{{ movimiento.tipo }}</td>
         <td>{{ movimiento.categoria }}</td>
@@ -42,3 +21,5 @@
     </tbody>
   </table>
 </div>
+
+

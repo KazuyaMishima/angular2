@@ -1,45 +1,39 @@
-import { MaestroModel, Movimiento, MaestroTipoModel } from './../datos.model';
-// Importación de los decoradores Input y OutPut
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MaestroModel, MovimientoModel, MaestroTipoModel } from './../datos.model';
+import { DatosService } from './../datos.service';
+import { Component, OnInit } from '@angular/core';
 
-/** Es un componente simple que recibe datos y emite eventos
- * Pero que no usa servicios de datos
- */
 @Component({
   selector: 'app-nuevo',
   templateUrl: './nuevo.component.html',
   styleUrls: ['./nuevo.component.css']
 })
 export class NuevoComponent implements OnInit {
-  // recibe datos vía propiedades
-  /** propiedad para entrada de tipos de movimiento */
-  @Input()
-  public tipos: MaestroModel[] = [];
-  /** propiedad para entrada de categorias de movimiento */
-  @Input() categorias: MaestroTipoModel[] = [];
-  /** propiedad para entrada de un movimiento */
-  @Input() movimiento: Movimiento;
+  tipos: MaestroModel[] = [];
+  categorias: MaestroTipoModel[] = [];
+  movimiento: MovimientoModel;
 
-
-  // emite eventos de cambio y de guardado
-  /** propiedad para emitir el evento de guardado del movimiento actual */
-  @Output() guardar: EventEmitter<Movimiento> = new EventEmitter<Movimiento>();
-  /** propiedad para emitir el evento de cambio de tipo del movimiento actual */
-  @Output() usuarioCambiarTipo: EventEmitter<number> = new EventEmitter<number>();
-
-  // ya no se usa datos service
-  // es un componente tonto ()
-  constructor() { }
-
-  ngOnInit() {   }
   
-  // emisión de eventos para cambios o pedir guardar el movimiento
-  /** cuando el usuario hace click en un radio button de tipo */
-  usuarioCambiarRadioButton() {
-    this.usuarioCambiarTipo.emit(this.movimiento.tipo);
+  // las dependencias se declaran como parámetros del constructor  
+  /** Este componente depende del objeto DatosService */
+  constructor(private datosService: DatosService) {
+    // No se escribe nada en el constructor ni en la clase
+    // Los argumentos los convierte TypeScript en propiedades
+   }
+
+  /** Al iniciarse el componente se cargan los datos*/
+  ngOnInit() {
+    this.tipos = this.datosService.tipos;
+    this.movimiento = this.datosService.getNuevoMovimiento();
+    this.cambiarTipo();
   }
-  /** cuando el usuario hace click en el botón de guardado */
+  /** Al cambiar el tipo de un movimiento se recargan las categorías */
+  cambiarTipo() {
+    this.categorias = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
+    // Cambios en el tipo, crean cambios en la categoría
+    this.movimiento.categoria = this.datosService.getCategoriasPorTipo(this.movimiento.tipo)[0].id;
+  }
+  /** Guarda un movimiento en el almacén */
   guardarMovimiento() {
-    this.guardar.emit(this.movimiento);
+    this.datosService.postMovimiento(this.movimiento);
   }
 }

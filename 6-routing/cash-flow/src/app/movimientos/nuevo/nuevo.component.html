@@ -33,7 +33,7 @@
           name="tiposGroup" 
           [(ngModel)]="movimiento.tipo" 
           [value]="tipo.id"
-          (ngModelChange)="usuarioCambiarRadioButton()" 
+          (ngModelChange)="cambiarTipo()" 
           type="radio">
           {{ tipo.text }}
       </label>

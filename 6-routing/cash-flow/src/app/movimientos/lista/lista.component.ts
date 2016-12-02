@@ -1,8 +1,7 @@
+// Las clases e interfaces de tipos no se inyectan
 import { MovimientoModel } from './../datos.model';
-// Ya no requiere observables y librerías de datos
-// import { Observable } from 'rxjs/Observable';
-// import { DatosService } from './../datos.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { DatosService } from './../datos.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lista',
@@ -10,19 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./lista.component.css']
 })
 export class ListaComponent implements OnInit {
-  
-  //movimientos$: Observable<Movimiento[]>;
 
+  movimientos: MovimientoModel[];
+  /** Este componente depende del objeto DatosService */
+  constructor(private datosService: DatosService) { }
 
-  // Recibe los datos vía propiedad desde su contenedor
-  /** Array de movimientos que debe pintar */
-  @Input('movimientos') movimientos: MovimientoModel[];  
-
-  // Sin dependencias  
-  constructor() { }
-
+  /** Al iniciar el componente se enlaza con el almacén de movimientos */
   ngOnInit() {
-
+    this.movimientos = this.datosService.getMovimientos();
   }
 
 }

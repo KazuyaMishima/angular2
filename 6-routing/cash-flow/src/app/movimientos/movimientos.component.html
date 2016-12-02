@@ -1,19 +1,8 @@
 <h3>
-  Movimientos
+  Módulo de Movimientos
 </h3>
-<!--[popiedades]="para enviar información a componentes hijos @Input"-->
-<!--(eventos)="para recibir información de componentes hijos @Output"-->
-
-
-<app-nuevo 
-  [tipos]="tiposEnElContenedor" 
-  [categorias]="categorias" 
-  [movimiento]="movimiento" 
-  (guardar)="guardarMovimiento()"
-  (usuarioCambiarTipo)="cambiarTipoDelMovimiento()">
-</app-nuevo>
-
-
-<app-lista 
-  [movimientos]="movimientos">
-</app-lista>
+<nav>
+   <a routerLink="/movimientos/nuevo" >Nuevo</a>
+   <a routerLink="/movimientos/lista" >Lista</a>
+</nav>
+<router-outlet></router-outlet>

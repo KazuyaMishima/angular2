@@ -1,3 +1,4 @@
+import { EditorComponent } from './editor/editor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -17,16 +18,17 @@ const routes: Routes = [
       {
         path: 'lista',
         component: ListaComponent
-      },
-      {
-        path: ':id',
-        component: NuevoComponent
       }
     ]
+  },
+  {
+    path: 'movimientos/:id',
+    component: EditorComponent
   }
 ];
 
-export const routableComponents= [
+export const routableComponents = [
+  EditorComponent,
   NuevoComponent,
   ListaComponent,
   MovimientosComponent

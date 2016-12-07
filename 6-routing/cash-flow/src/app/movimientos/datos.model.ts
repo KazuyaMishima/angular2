@@ -13,6 +13,7 @@ export interface MaestroTipoModel extends MaestroModel {
 }
 
 export interface MovimientoModel {
+  _id: string,
   fecha: Date;
   importe: number;
   tipo: number;
@@ -20,6 +21,7 @@ export interface MovimientoModel {
 }
 
 export class Movimiento implements MovimientoModel {
+  public _id: string;
   constructor(
     public fecha: Date,
     public importe: number,

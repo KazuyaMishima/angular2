@@ -1,8 +1,9 @@
+/** Módulos de enrutado de Angular2 */
+import { RouterModule, Routes } from '@angular/router';
+
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
-
-// definir las rutas
+// Array con las rutas de este módulo
 const routes: Routes = [
   { path: 'inicio', redirectTo: '' },
   { path: 'contacto', redirectTo: '' },
@@ -15,11 +16,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes) // configuración raiz
   ],
   exports: [
-    RouterModule
-  ],
-  providers: []
+    RouterModule // se importará desde el módulo padre
+  ]
 })
 export class AppRoutingModule { }

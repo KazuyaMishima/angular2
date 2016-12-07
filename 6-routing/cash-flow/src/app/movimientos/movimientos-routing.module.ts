@@ -1,18 +1,19 @@
-import { EditorComponent } from './editor/editor.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { MovimientosComponent } from './movimientos.component';
+/** Importación de los componentes enrutables */
+import { EditorComponent } from './editor/editor.component';
 import { ListaComponent } from './lista/lista.component';
+import { MovimientosComponent } from './movimientos.component';
+import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
 
 const routes: Routes = [
   {
     path: 'movimientos',
     component: MovimientosComponent,
-    children: [
+    children: [ // rutas hijas, se verán dentro del componente padre
       {
-        path: 'nuevo',
+        path: 'nuevo', // la ruta real es movimientos/nuevo
         component: NuevoComponent
       },
       {
@@ -22,7 +23,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'movimientos/:id',
+    path: 'movimientos/:id', // parámetro variable id
     component: EditorComponent
   }
 ];

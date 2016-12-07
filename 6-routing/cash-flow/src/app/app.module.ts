@@ -1,15 +1,15 @@
-// objetos con utilidades comunes del framework
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 // importación del componente raíz, definido en esta misma carpeta
 import { AppComponent } from './app.component';
-// importación de módulo de enrtutado
+// importación de módulo de enrutado asociado
 import { AppRoutingModule } from './app-routing.module';
+// objetos con utilidades comunes del framework
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 // importación de módulos de funcionalidad
 import { HomeModule } from './home/home.module';
+import { HttpModule } from '@angular/http';
 import { MovimientosModule } from './movimientos/movimientos.module';
+import { NgModule } from '@angular/core';
 // decorador que define un módulo
 @NgModule({
   declarations: [

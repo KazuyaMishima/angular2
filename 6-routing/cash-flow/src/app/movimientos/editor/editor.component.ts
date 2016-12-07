@@ -1,6 +1,8 @@
-import { DatosService } from './../datos.service';
 import { Component, OnInit } from '@angular/core';
+
+/** Servicio para acceder a la ruta activa */
 import { ActivatedRoute } from '@angular/router';
+import { DatosService } from './../datos.service';
 
 @Component({
   selector: 'app-editor',
@@ -12,6 +14,7 @@ export class EditorComponent implements OnInit {
   constructor(private route: ActivatedRoute, private datosService: DatosService) { }
 
   ngOnInit() {
+    // subscripción al observable params
     this.route.params
       .subscribe(params => {
         const _id = params['id'].toString();

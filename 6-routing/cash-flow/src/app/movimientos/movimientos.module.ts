@@ -1,12 +1,11 @@
-// Importar el servicio DatosService desde el fichero
-import { DatosService } from './datos.service';
-
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+/** Módulo de enrutado y componentes */
 import { MovimientosRoutingModule, routableComponents } from './movimientos-routing.module';
 
+import { CommonModule } from '@angular/common';
+// Importar el servicio DatosService desde el fichero
+import { DatosService } from './datos.service';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   imports: [

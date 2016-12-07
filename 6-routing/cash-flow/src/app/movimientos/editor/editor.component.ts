@@ -1,4 +1,6 @@
+import { DatosService } from './../datos.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-editor',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
-
-  constructor() { }
+  movimiento;
+  constructor(private route: ActivatedRoute, private datosService: DatosService) { }
 
   ngOnInit() {
+    this.route.params
+      .subscribe(params => {
+        const _id = params['id'].toString();
+        this.movimiento = this.datosService.getMovimientoBy_Id(_id);
+      });
   }
 
 }

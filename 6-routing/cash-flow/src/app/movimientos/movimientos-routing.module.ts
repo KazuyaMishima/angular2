@@ -26,6 +26,12 @@ const routes: Routes = [
   }
 ];
 
+export const routableComponents= [
+  NuevoComponent,
+  ListaComponent,
+  MovimientosComponent
+]
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

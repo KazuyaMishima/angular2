@@ -10,7 +10,7 @@ import { MovimientosComponent } from './movimientos.component';
 import { ListaComponent } from './lista/lista.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
 
-import { MovimientosRoutingModule } from './movimientos-routing.module';
+import { MovimientosRoutingModule, routableComponents } from './movimientos-routing.module';
 
 @NgModule({
   imports: [
@@ -18,12 +18,10 @@ import { MovimientosRoutingModule } from './movimientos-routing.module';
     FormsModule,
     MovimientosRoutingModule ],// dependencias de otros módulos
   declarations: [
-    MovimientosComponent,
-    ListaComponent,
-    NuevoComponent ],// Componente que el mismo declara
+    routableComponents],// Componente que el mismo declara
   exports: [
-    MovimientosComponent
-  ], // exporta los componentes importables desde otros módulos
+    
+  ], // no necesita exportar nada
   providers: [
     DatosService] // registro del servicio como un provvedor del módulo
   

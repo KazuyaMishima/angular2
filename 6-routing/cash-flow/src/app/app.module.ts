@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 // importación de módulo de enrtutado
 import { AppRoutingModule } from './app-routing.module';
 // importación de módulos de funcionalidad
-import { MovimientosModule } from './movimientos/movimientos.module';
 import { HomeModule } from './home/home.module';
+import { MovimientosModule } from './movimientos/movimientos.module';
 // decorador que define un módulo
 @NgModule({
   declarations: [
@@ -19,8 +19,8 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MovimientosModule, // el módulo de movimientos
     HomeModule, // el módulo de bienvenida
+    MovimientosModule, // el módulo de movimientos
     AppRoutingModule // el módulo de rutas ya configurado
   ], // otros módulos que necesitamos para que este funcione
   providers: [] , // inyección de servicios comunes para la aplicación

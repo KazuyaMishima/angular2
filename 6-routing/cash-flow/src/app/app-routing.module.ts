@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'inicio', redirectTo: '' },
   { path: 'contacto', redirectTo: '' },
   {
-    path: '**',
+    path: '**', // para casos not-found
     redirectTo: '',
     pathMatch: 'full'
   }
@@ -16,10 +16,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes) // configuración raiz
+    RouterModule.forRoot(routes) // configuración para un módulo raiz
   ],
   exports: [
-    RouterModule // se importará desde el módulo padre
+    RouterModule // se importará desde el módulo padre, el raíz
   ]
 })
 export class AppRoutingModule { }

@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 // objetos con utilidades comunes del framework
 import { BrowserModule } from '@angular/platform-browser';
+import { ContactoModule } from './contacto/contacto.module';
 import { FormsModule } from '@angular/forms';
 // importación de módulos de funcionalidad
 import { HomeModule } from './home/home.module';
@@ -17,6 +18,7 @@ import { NgModule } from '@angular/core';
   ], // cosas declaradas en este módulo
   imports: [
     BrowserModule,
+    ContactoModule,
     FormsModule,
     HttpModule,
     HomeModule, // el módulo de bienvenida

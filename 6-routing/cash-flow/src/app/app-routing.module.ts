@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 // Array con las rutas de este módulo
 const routes: Routes = [
   { path: 'inicio', redirectTo: '' },
-  { path: 'contacto', redirectTo: '' },
+  //{ path: 'contacto', redirectTo: '' },
   {
     path: '**', // para casos not-found
     redirectTo: '',

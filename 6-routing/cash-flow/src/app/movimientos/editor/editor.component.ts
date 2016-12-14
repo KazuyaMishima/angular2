@@ -11,15 +11,18 @@ import { DatosService } from './../datos.service';
 })
 export class EditorComponent implements OnInit {
   movimiento;
+  /**
+   * ActivatedRoute da acceso a la ruta activa
+   */
   constructor(private route: ActivatedRoute, private datosService: DatosService) { }
 
   ngOnInit() {
     // subscripción al observable params
     this.route.params
       .subscribe(params => {
-        const _id = params['id'].toString();
-        this.movimiento = this.datosService.getMovimientoBy_Id(_id);
+        const _id = params['id'].toString(); // recpeción del parámetro
+        this.movimiento = this.datosService.getMovimientoBy_Id(_id); // consulta al servicio
       });
   }
-
+ 
 }

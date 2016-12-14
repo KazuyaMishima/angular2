@@ -1,4 +1,4 @@
-/** Módulo de enrutado y componentes */
+/** Módulo de enrutado y los componentes que utiliza */
 import { MovimientosRoutingModule, routableComponents } from './movimientos-routing.module';
 
 import { CommonModule } from '@angular/common';
@@ -14,8 +14,8 @@ import { NgModule } from '@angular/core';
     MovimientosRoutingModule
   ], // dependencias de otros módulos
   declarations: [
-    routableComponents
-  ], // Componente que el mismo declara
+    routableComponents // importados desde el módulo de enrutado
+  ], // Componentes declarados en este módulo
   exports: [
 
   ], // no necesita exportar nada

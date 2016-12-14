@@ -5,12 +5,12 @@ Enrutado modular
 ### Guía
 - `app-routing.module.ts` : ng new cash-flow --routing true
 - `app.module.ts` : import { AppRoutingModule } from './app-routing.module';
-- `app.component.html` :  outer-outlet y routerLink
-- `movimientos-routing.module.ts` :
-- `movimientos.module.ts` :
-- `movimientos.component.html` : routerLink <router-outlet></router-outlet>
-- `lista.component.html` :  routerLink
-- `editor.component.ts` : router.params.subscribe()
+- `app.component.html` :  outer-outlet y routerLink principales
+- `movimientos-routing.module.ts` : Enrutado para el módulo movimientos 
+- `movimientos.module.ts` : el módulo movimientos importa a us enrutador
+- `movimientos.component.html` : outer-outlet y routerLink para movimientos
+- `lista.component.html` :  routerLink con parámetros
+- `editor.component.ts` : recepción de router.params.subscribe()
 
 
 ()

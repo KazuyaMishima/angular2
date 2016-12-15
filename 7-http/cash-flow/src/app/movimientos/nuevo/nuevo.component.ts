@@ -1,6 +1,7 @@
-import { MaestroModel, MovimientoModel, MaestroTipoModel } from './../datos.model';
-import { DatosService } from './../datos.service';
 import { Component, OnInit } from '@angular/core';
+import { MaestroModel, MaestroTipoModel, MovimientoModel } from './../datos.model';
+
+import { DatosService } from './../datos.service';
 
 @Component({
   selector: 'app-nuevo',
@@ -22,7 +23,7 @@ export class NuevoComponent implements OnInit {
 
   /** Al iniciarse el componente se cargan los datos*/
   ngOnInit() {
-    this.tipos = this.datosService.tipos;
+    this.datosService.getTipos().subscribe(t=>this.tipos=t);
     this.movimiento = this.datosService.getNuevoMovimiento();
     this.cambiarTipo();
   }

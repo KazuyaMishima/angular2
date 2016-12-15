@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { MovimientosModule } from './movimientos/movimientos.module';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
+import { UserModule } from './user/user.module';
 // decorador que define un módulo
 @NgModule({
   declarations: [

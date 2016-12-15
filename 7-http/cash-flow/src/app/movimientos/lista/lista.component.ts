@@ -1,7 +1,8 @@
+import { Component, OnInit } from '@angular/core';
+
+import { DatosService } from './../datos.service';
 // Las clases e interfaces de tipos no se inyectan
 import { MovimientoModel } from './../datos.model';
-import { DatosService } from './../datos.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lista',
@@ -16,7 +17,7 @@ export class ListaComponent implements OnInit {
 
   /** Al iniciar el componente se enlaza con el almacén de movimientos */
   ngOnInit() {
-    this.movimientos = this.datosService.getMovimientos();
+    this.datosService.getMovimientos$().subscribe(m=>this.movimientos=m);
   }
 
 }

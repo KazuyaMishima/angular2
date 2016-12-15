@@ -24,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
     HttpModule,
     HomeModule, // el módulo de bienvenida
     MovimientosModule, // el módulo de movimientos
+    UserModule, // módulo de gestions de usuarios
     AppRoutingModule, // el módulo de rutas ya configurado
     SharedModule // módulo con utilidades comunes
   ], // otros módulos que necesitamos para que este funcione

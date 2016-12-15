@@ -38,7 +38,7 @@ export class HttpToolsService {
     console.log(JSON.stringify(error));
     if (error.status == 401) {
       console.log("Error de permisos");
-      HttpToolsService._router.navigate(['seguridad'])
+      HttpToolsService._router.navigate(['user'])
     }
     else {
       console.log("Otro Error");

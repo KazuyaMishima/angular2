@@ -11,7 +11,7 @@ import { DatosService } from './../datos.service';
 export class NuevoComponent implements OnInit {
   tipos: MaestroModel[] = [];
   categorias: MaestroTipoModel[] = [];
-  movimiento: MovimientoModel;
+  movimiento: any = {};
 
   
   // las dependencias se declaran como parámetros del constructor  
@@ -23,18 +23,25 @@ export class NuevoComponent implements OnInit {
 
   /** Al iniciarse el componente se cargan los datos*/
   ngOnInit() {
-    this.datosService.getTipos().subscribe(t=>this.tipos=t);
-    this.movimiento = this.datosService.getNuevoMovimiento();
-    this.cambiarTipo();
+    this.datosService.getTipos().subscribe(tipos => {
+      this.tipos = tipos;
+      this.datosService.getCategorias().subscribe(categorias => {
+        this.categorias = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
+      });
+    });
   }
   /** Al cambiar el tipo de un movimiento se recargan las categorías */
   cambiarTipo() {
     this.categorias = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
     // Cambios en el tipo, crean cambios en la categoría
-    this.movimiento.categoria = this.datosService.getCategoriasPorTipo(this.movimiento.tipo)[0].id;
+    let categoriasPorTipo = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
+    if (categoriasPorTipo && categoriasPorTipo.length > 0) {
+      this.movimiento.categoria = this.datosService.getCategoriasPorTipo(this.movimiento.tipo)[0].id;
+    }  
   }
   /** Guarda un movimiento en el almacén */
   guardarMovimiento() {
+    console.log('guardarMovimiento');
     this.datosService.postMovimiento(this.movimiento);
   }
 }

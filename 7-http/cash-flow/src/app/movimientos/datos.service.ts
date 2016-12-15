@@ -33,8 +33,9 @@ export class DatosService {
 
 
   getNuevoMovimiento(): MovimientoModel {
+    let fechaActual:Date = new Date(Date.now());
     return new Movimiento(
-      new Date(Date.now()),
+      fechaActual,
       0,
       1,
       1
@@ -72,15 +73,17 @@ export class DatosService {
      */
     let body = JSON.stringify(movimiento)
     let options = this.httpToolsService.configurarCabeceras()
+    console.log(body);
     if (movimiento._id && movimiento._id !=='_') {
       return this.http
         .put(`${this.urlBase}/priv/movimientos/${movimiento._id}`, body, options)
-        .catch(this.httpToolsService.tratarErrores)
+        .catch(this.httpToolsService.tratarErrores);
     }
     else {
+      console.log('posting...');
       return this.http
-        .post(`${this.urlBase}/priv/movimientos`, body, options)
-        .catch(this.httpToolsService.tratarErrores)
+        .post(`${this.urlBase}/priv/movimientos`, body, options);
+        //.catch(this.httpToolsService.tratarErrores)
     }
   }
 

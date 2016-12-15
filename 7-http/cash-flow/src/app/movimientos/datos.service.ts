@@ -82,8 +82,8 @@ export class DatosService {
     else {
       console.log('posting...');
       return this.http
-        .post(`${this.urlBase}/priv/movimientos`, body, options);
-        //.catch(this.httpToolsService.tratarErrores)
+        .post(`${this.urlBase}/priv/movimientos`, body, options)
+        .catch(this.httpToolsService.tratarErrores);
     }
   }
 

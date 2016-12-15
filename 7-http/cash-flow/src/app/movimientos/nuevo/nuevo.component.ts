@@ -42,6 +42,8 @@ export class NuevoComponent implements OnInit {
   /** Guarda un movimiento en el almacén */
   guardarMovimiento() {
     console.log('guardarMovimiento');
-    this.datosService.postMovimiento(this.movimiento);
+    this.datosService
+      .postMovimiento(this.movimiento)
+      .subscribe(r => console.log('ok'));
   }
 }

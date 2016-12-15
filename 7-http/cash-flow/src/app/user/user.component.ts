@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
 
       usuario={};//:any = { email:'', password:''}
     mensaje = "";
-    constructor(private seguridadService: UserService){
+    constructor(private userService: UserService){
     }
 
     ngOnInit(){
@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
 
     registrarUsuario(){
         console.log('Enviando credenciales apara registro: ' + JSON.stringify(this.usuario));
-        this.seguridadService
+        this.userService
             .registrar(this.usuario)
             .subscribe(
                 r=>{
@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
     entrarUsuario(){
         console.log('Enviando credenciales para entrada: ' + JSON.stringify(this.usuario));
         this.mensaje="validando...";
-        this.seguridadService
+        this.userService
             .entrar(this.usuario)
             .subscribe(
                 r=>{

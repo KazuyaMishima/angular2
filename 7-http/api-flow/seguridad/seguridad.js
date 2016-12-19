@@ -1,7 +1,16 @@
 /** Módulos de ayuda */
-const mongodb = require('./../mongodb')
-const jwt = require('./jwt')
-const colName = 'usuarios'
+const jwt = require('./jwt');
+const colName = 'usuarios';
+const usuarios = [];
+const sesiones = [];
+
+var existeUsuario = usuario => usuarios.some(u  => u.email == usuario.email);
+
+var crearUsuario = usuario =>  usuarios.push(usuario);
+
+var esUsuarioValido = usuario  => usuarios.filter(u => u.email == usuario.email && u.password == usuario.password)[0];
+
+
 /**
  * Módulo con funciones útiles para la seguridad de la aplicación
  */
@@ -11,7 +20,7 @@ module.exports = {
     /** comprueba si exite un usuario */
     existeUsuario: existeUsuario,
     /** crea un nuevo usuario */
-    crearUsuario: creandoUsuario,
+    crearUsuario: crearUsuario,
     /** determina si unas credenciales son válidas */
     esUsuarioValido: esUsuarioValido,
     /** crea un nuevo token de sesión */
@@ -33,21 +42,7 @@ function usarSeguridad(app, ruta) {
     })
 }
 
-/**
- * los registros de usuario se crean físicamente en base de datos
- */
 
-function existeUsuario(usuario) {
-    return mongodb.finding(colName, { email: usuario.email })
-}
-
-function creandoUsuario(usuario) {
-    return mongodb.inserting(colName, usuario)
-}
-
-function esUsuarioValido(usuario) {
-    return mongodb.finding(colName, { email: usuario.email, password: usuario.password })
-}
 
 
 

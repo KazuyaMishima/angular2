@@ -1,5 +1,4 @@
 [Routing](http://academia-binaria.com/enrutado-con-angular2-el-nuevo-spa/)
-(http://academia-binaria.com/ghost/editor/22/)
 Enrutado modular 
 
 ### Guía

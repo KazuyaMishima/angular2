@@ -1,6 +1,11 @@
 {
   "name": "cash-flow",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "author": {
+    "name": "Alberto Basalo",
+    "url": "http://academia-binaria.com",
+    "email": "albertobasalo@agorabinaria.com"
+  },
   "license": "MIT",
   "angular-cli": {},
   "scripts": {

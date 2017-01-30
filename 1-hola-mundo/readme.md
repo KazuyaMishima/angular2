@@ -7,21 +7,25 @@
 ng new cash-flow --p cf --is true --sg 
 ```
 
-- `src\index.html` : Página raíz que contiene al componente raíz `<app-root>`
+- `src\index.html` : Página raíz que contiene al componente raíz `<cf-root>`
 - `src\main.ts` : Fichero de arranque de la aplicación que configura y carga el módulo ráiz `AppModule`.
 - `src\app\app.module.ts` : Declaración del módulo raíz y sus dependencias. Exponen al `AppComponent` para el *bootstraping* de la aplicación
-- `src\app\app.component.ts` : Componente raíz `app-root`
-- `src\app\app-routing.component.ts` : Se usará para definir rutas en aplicaciones SPA
-- `src\app\index.ts` : Fichero índice de una carpeta, para facilitar la importación de otros ficheros
-
+- `src\app\app.component.ts` : Componente raíz `cf-root`
 
 ## CLI
 
 - `angular-cli.json` : Configuracíon del CLI
-- `package.json` : Rependencias y scripts 
+- `package.json` : Dependencias y scripts 
 - `tslint.json` : Reglas para código limpio
 - `.editorconfig` : Configuración para el editor
 
+```
+ng new cash-flow --p cf --is true --sg 
+ng build
+ng build --prod
+ng serve -o 
+ng test --single-run
+```
 
 ### ng options
 [Documentación](https://github.com/angular/angular-cli/blob/master/docs/documentation/new.md)

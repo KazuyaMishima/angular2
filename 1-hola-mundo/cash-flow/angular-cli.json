@@ -15,7 +15,7 @@
       "main": "main.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
-      "prefix": "cf",
+      "prefix": "cf", 
       "mobile": false,
       "styles": [
         "styles.css"
@@ -42,7 +42,7 @@
     "styleExt": "css",
     "prefixInterfaces": false,
     "inline": {
-      "style": false,
+      "style": true,
       "template": false
     },
     "spec": {

@@ -1,5 +1,4 @@
 [Routing](http://academia-binaria.com/enrutado-con-angular2-el-nuevo-spa/)
-(http://academia-binaria.com/ghost/editor/22/)
 Enrutado modular 
 
 ### Guía
@@ -18,3 +17,5 @@ Enrutado modular
 ng new cash-flow --routing true
 ng g m home --routing true
 no se necesitan @input ni observables
+
+

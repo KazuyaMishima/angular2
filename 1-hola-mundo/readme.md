@@ -3,6 +3,9 @@
 
 
 ## Guía
+```
+ng new cash-flow --p cf --is true --sg 
+```
 
 - `src\index.html` : Página raíz que contiene al componente raíz `<app-root>`
 - `src\main.ts` : Fichero de arranque de la aplicación que configura y carga el módulo ráiz `AppModule`.
@@ -21,6 +24,7 @@
 
 
 ### ng options
+[Documentación](https://github.com/angular/angular-cli/blob/master/docs/documentation/new.md)
 ```javascript
   {
   name: 'new',

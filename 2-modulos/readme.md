@@ -7,6 +7,7 @@ Módulos de funcionalidad con Angular 2
 - `ng g m movimientos` : crea el módulo movimientos en su carpeta y con un componente
 - `movimientos` : carpeta para el módulo movimientos
 - `movimientos.module.ts` : un módulo de funcionalidad, declara al componente (hay que exportarlo)
+- `ng g c movimientos/movimientos` : Creación del componente principal del módulo
 - `movimientos.component.ts` : componente principal del módulo, con el prefijo app
 - `movimientos.component.html` : vista del componente movimientos
 - `app.module.ts` : importación del módulo de movimientos

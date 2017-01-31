@@ -8,14 +8,13 @@ import { NgModule } from '@angular/core';
  *  - definir componentes y servicios reutilizables por la aplicación
  */
 @NgModule({
-  imports: [
+  imports: [// Módulos necesarios
     CommonModule,
     FormsModule
   ],
-  declarations: [],
-  exports: [
+  exports: [// Lo que aquí se exporte se importará en los módulos funcionales
     CommonModule,
     FormsModule
-  ] // Lo que aquí se exporte se importará en los módulos funcionales
+  ]
 })
 export class SharedModule { }

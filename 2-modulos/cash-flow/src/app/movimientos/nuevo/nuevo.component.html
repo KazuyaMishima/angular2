@@ -8,9 +8,9 @@
     <button (click)="mostrarFormulario=false" >Ocultar Formulario</button>
   </span>
 </header>
-<main>
+<main *ngIf="mostrarFormulario">
   <!-- * directivas estructurales-->
-  <form *ngIf="mostrarFormulario">
+  <form>
     <!--banana in a box, lectura y escritura-->
     <div class="row">
       <label for="fecha" class="column">Fecha: </label>
@@ -24,13 +24,16 @@
       <label for="tipo" class="column">Tipo: </label>
       <!--bucle para definir las opciones de radio buttons-->
       <div *ngFor="let tipo of tiposMovimiento" class="column">
-        <input type="radio" name="tipo" value="{{ tipo.id }}" [(ngModel)]="movimiento.tipo"> {{ tipo.texto }}<br>
+        <input type="radio" name="tipo" value="{{ tipo.id }}" [(ngModel)]="movimiento.tipo">
+        <!--interpolación del atributo class -->
+        <span class="{{tipo.texto | lowercase}}">{{ tipo.texto }}</span>
       </div>
     </div>
   </form>
   <aside class="container">
     <em class="row">Movimento en curso: </em>
     <code class="row">
+      <!--visión de un objeto con el pipe json-->
       <strong>{{ movimiento | json }}</strong>
     </code>
   </aside>

@@ -1,86 +1,30 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-nuevo',
+  selector: 'cf-nuevo',
   templateUrl: './nuevo.component.html',
-  styleUrls: ['./nuevo.component.css']
+  styleUrls: ['./nuevo.component.css'] // ruta para hpjas de estilo propias
 })
 /**
- * Clase del componente nuevo movimiento
- * */
+ *  Componente para crear movimientos
+ **/
 export class NuevoComponent implements OnInit {
-  
-  /**
-   * Muestra u oculta el formulario
-   */
-  public formularioVisible: boolean = false;
+  /** Propiedad con el array para montar la lista de tipos de movimientos posibles */
+  private tiposMovimiento: any[] = [
+    { id: 1, texto: 'Ingreso' },
+    { id: 2, texto: 'Gasto' }];
+  /** Propiedad en la que almacenar la información de un movimiento */
+  private movimiento: any = {};
 
-  public mostrarFormulario = () => {
-    this.formularioVisible = true;
-  }
-  
-  public ocultarFormulario = () => {
-    this.formularioVisible = false;
-  }
-
+  constructor() { }
   /**
-   * Tipos de movimientos
+   * Evento que se lanaza al incio del ciclo de vida del componente
    */
-  public tipos: any[] = [
-    { id: 1, text: "Ingreso" },
-    { id: 2, text: "Gasto" },
-    { id: 3, text: "Expediente" }
-  ];
-  /**
-   * Categorías, por tipo de movimiento
-   */
-  categoriasTipos: any[] = [
-    { id: 1, text: "Nómina", type: 1 },
-    { id: 2, text: "Ventas", type: 1 },
-    { id: 3, text: "Intereses", type: 1 },
-    { id: 4, text: "Hipoteca", type: 2 },
-    { id: 5, text: "Compras", type: 2 },
-    { id: 6, text: "Domiciliaciones", type: 2 },
-    { id: 7, text: "Impuestos", type: 2 }];
-  /**
-   * Categorias filtradas para el tipo del movimiento actual
-   */
-  categorias: any[] = [];
-
-  /**
-   * Movimiento en curso
-   *  */
-  movimiento: any = {};
-  /**
-   * Base de datos de movimientos
-   */
-  movimientos: any[] = [];
-
-  constructor( ) { /** VACÍO */}
-
-  /**
-  * arranque del componente 
-  **/
   ngOnInit() {
     this.movimiento = {
-      fecha: new Date(Date.now()),
       importe: 0,
-      tipo: this.tipos[0].id
-    }
-    this.cambiarTipo();
+      tipo: this.tiposMovimiento[0].id
+    };
   }
 
-  /**
-   *
-   */
-  cambiarTipo() {
-    // recargar categorías cuando cambiamos de tipo de movimiento
-    this.categorias = this.categoriasTipos
-      .filter(c => c.type === this.movimiento.tipo);
-  }
-
-  guardarMovimiento() {
-    let clone = Object.assign({}, this.movimiento);
-    this.movimientos.push(clone);
-  }
 }

@@ -1,14 +1,14 @@
 <header>
   <h5>Nuevo Movimiento</h5>
   <!--(click) es un evento [hidden] es una propiedad -->
-  <span [hidden]="mostrarFormulario">
-    <button (click)="mostrarFormulario=true">Mostrar Formulario</button>
+  <span [hidden]="formularioVisible">
+    <button (click)="mostrarFormulario()">Mostrar Formulario</button>
   </span>
-  <span [hidden]="!mostrarFormulario">
-    <button (click)="mostrarFormulario=false" >Ocultar Formulario</button>
+  <span [hidden]="!formularioVisible">
+    <button (click)="ocultarFormulario()" >Ocultar Formulario</button>
   </span>
 </header>
-<main *ngIf="mostrarFormulario">
+<main *ngIf="formularioVisible">
   <!-- * directivas estructurales-->
   <form>
     <!--banana in a box, lectura y escritura-->
@@ -24,10 +24,25 @@
       <label for="tipo" class="column">Tipo: </label>
       <!--bucle para definir las opciones de radio buttons-->
       <div *ngFor="let tipo of tiposMovimiento" class="column">
-        <input type="radio" name="tipo" value="{{ tipo.id }}" [(ngModel)]="movimiento.tipo">
+        <!--evento de cambio del modelo-->
+        <input type="radio" name="tipo" value="{{ tipo.id }}" [(ngModel)]="movimiento.tipo" (ngModelChange)="cambiarTipo()">
         <!--interpolación del atributo class -->
         <span class="{{tipo.texto | lowercase}}">{{ tipo.texto }}</span>
       </div>
+    </div>
+    <div class="row">
+      <label for="categoria" class="column">Categoría: </label>
+      <!--las opciones se cargan con *ngFor-->
+      <select name="categoria" [(ngModel)]="movimiento.categoria" class="column">
+        <option 
+            *ngFor="let categoria of categorias"
+            [value]="categoria.id"> 
+            {{categoria.texto}} 
+        </option>
+    </select>
+    </div>
+    <div class="row">
+      <button (click)="guardarMovimiento()">Guardar Movimiento</button>
     </div>
   </form>
   <aside class="container">
@@ -36,5 +51,13 @@
       <!--visión de un objeto con el pipe json-->
       <strong>{{ movimiento | json }}</strong>
     </code>
+  </aside>
+  <aside>
+    <em class="row">Lista de movimientos:</em>
+    <div class="row">
+      <code>
+        {{ movimientos | json }}
+      </code>
+    </div>
   </aside>
 </main>

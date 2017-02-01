@@ -49,10 +49,11 @@ export class NuevoComponent implements OnInit {
    */
   ngOnInit() {
     this.movimiento = {
+      fecha : new Date(),
       importe: 0,
       tipo: this.tiposMovimiento[0].id
     };
-    this.cambiarTipo();
+    this.alCambiarTipo();
   }
 
   private mostrarFormulario = () => {
@@ -66,8 +67,7 @@ export class NuevoComponent implements OnInit {
   /**
    * Recalcula las categorias válidas para el tipo del movimiento actual
    */
-  cambiarTipo() {
-    this.movimiento.tipo = +this.movimiento.tipo; // Cast manual a entero
+  alCambiarTipo() {
     // recargar categorías cuando cambiamos de tipo de movimiento
     this.categorias = this.categoriasTipoMovimiento
       .filter(c => c.tipo === this.movimiento.tipo);
@@ -77,11 +77,8 @@ export class NuevoComponent implements OnInit {
   /**
    * Clona y almacena el movimiento actual
    */
-  guardarMovimiento() {
+  alGuardarMovimiento() {
     const clone = Object.assign({}, this.movimiento);
     this.movimientos.push(clone);
   }
-
-
-  // To do: https://juristr.com/blog/2016/11/ng2-binding-radiobutton-lists/ 
 }

@@ -14,7 +14,9 @@
     <!--banana in a box, lectura y escritura-->
     <div class="row">
       <label for="fecha" class="column">Fecha: </label>
-      <input type="date" [(ngModel)]="movimiento.fecha" name="fecha" class="column">
+      <!--<input type="date" [(ngModel)]="movimiento.fecha" name="fecha" class="column">-->
+      <!--las fechas y sus formatos...-->
+      <input type="date" [ngModel]="movimiento.fecha | date:'y-MM-dd'" (ngModelChange)="movimiento.fecha = $event" name="fecha" class="column">
     </div>
     <div class="row">
       <label for="importe" class="column">Importe: </label>
@@ -25,7 +27,7 @@
       <!--bucle para definir las opciones de radio buttons-->
       <div *ngFor="let tipo of tiposMovimiento" class="column">
         <!--evento de cambio del modelo-->
-        <input type="radio" name="tipo" value="{{ tipo.id }}" [(ngModel)]="movimiento.tipo" (ngModelChange)="cambiarTipo()">
+        <input type="radio" name="tipo" [value]="tipo.id" [(ngModel)]="movimiento.tipo" (ngModelChange)="alCambiarTipo()">
         <!--interpolación del atributo class -->
         <span class="{{tipo.texto | lowercase}}">{{ tipo.texto }}</span>
       </div>
@@ -42,7 +44,7 @@
     </select>
     </div>
     <div class="row">
-      <button (click)="guardarMovimiento()">Guardar Movimiento</button>
+      <button (click)="alGuardarMovimiento()">Guardar Movimiento</button>
     </div>
   </form>
   <aside class="container">

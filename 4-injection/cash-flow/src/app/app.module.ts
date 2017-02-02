@@ -1,26 +1,33 @@
-// objetos con utilidades comunes del framework
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-// importación del componente raíz, definido en esta misma carpeta
+/**
+ * importación de módulos con objetos y utilidades comunes del framework y propios
+/* importación del componente raíz, definido en esta misma carpeta
+*/
+
 import { AppComponent } from './app.component';
-// importación de un módulo de funcionalidad
-import { MovimientosModule } from './movimientos/movimientos.module'
+import { BrowserModule } from '@angular/platform-browser';
+import { MovimientosModule } from './movimientos/movimientos.module'; // Módulo funcional propio
+import { NgModule } from '@angular/core';
+import { SharedModule } from './shared/shared.module'; // Módulo propio compartido
+
 // decorador que define un módulo
 @NgModule({
-  declarations: [
+  declarations: [ // cosas declaradas en este módulo
     AppComponent
-  ], // cosas declaradas en este módulo
-  imports: [
+  ],
+  imports: [ // otros módulos que necesitamos para que este funcione
     BrowserModule,
-    FormsModule,
-    HttpModule,
-    MovimientosModule // el módulo de movimientos
-  ], // otros módulos que necesitamos para que este funcione
-  providers: [] , // inyección de servicios comunes para la aplicación
-  bootstrap: [AppComponent] // componente raíz para el arranque
+    MovimientosModule,
+    SharedModule
+  ],
+  bootstrap: [ // componente raíz para el arranque
+    AppComponent
+  ]
 })
-// los módulos son clases contendoras 
-// habitualmente con poco o ningún código
-export class AppModule { }
+/**
+ * Módulo raiz de la aplicación
+ * Destinado a importar la funcionalidad implentada en otros módulos
+ */
+export class AppModule {
+  // los módulos son clases contendoras 
+  // habitualmente con poco o ningún código
+}

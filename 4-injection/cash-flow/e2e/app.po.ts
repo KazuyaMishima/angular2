@@ -1,11 +1,11 @@
 import { browser, element, by } from 'protractor';
 
-export class HolaAngular2Page {
+export class CashFlowPage {
   navigateTo() {
     return browser.get('/');
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('cf-root h1')).getText();
   }
 }

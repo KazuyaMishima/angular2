@@ -1,31 +1,20 @@
-// Importar el servicio DatosService desde el fichero
-// Se registrará como un provider 
-// Podrá ser inyectado en los componentes de este módulo
-import { DatosService } from './datos.service';
-
-import { FormsModule } from '@angular/forms';
+import { MovimientosComponent } from './movimientos/movimientos.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-/** Importa un componente que declara y que luego exporta */
-import { MovimientosComponent } from './movimientos.component';
-import { ListaComponent } from './lista/lista.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
-
+import { SharedModule } from './../shared/shared.module';
+/**
+ * Una aplicación se compoen de unos o más módulos funcionales
+ */
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule ],// dependencias de otros módulos
+    SharedModule
+  ], // dependencias de otros módulos
   declarations: [
     MovimientosComponent,
-    ListaComponent,
-    NuevoComponent ],// Componente que el mismo declara
+    NuevoComponent // este componente no se exporta
+  ], // componentes que se declaran en este módulo de movimientos
   exports: [
     MovimientosComponent
-  ], // exporta los componentes importables desde otros módulos
-  providers: [
-    DatosService
-  ] // registro del servicio como un proveedor del módulo
-  
+  ] // componentes que exporta para ser usados en otros módulos
 })
 export class MovimientosModule { }

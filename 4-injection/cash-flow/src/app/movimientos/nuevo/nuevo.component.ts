@@ -1,39 +1,84 @@
-import { MaestroModel, MovimientoModel, MaestroTipoModel } from './../datos.model';
-import { DatosService } from './../datos.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-nuevo',
+  selector: 'cf-nuevo',
   templateUrl: './nuevo.component.html',
-  styleUrls: ['./nuevo.component.css']
+  styleUrls: ['./nuevo.component.css'] // ruta para hpjas de estilo propias
 })
+/**
+ *  Componente para crear movimientos
+ **/
 export class NuevoComponent implements OnInit {
-  tipos: MaestroModel[] = [];
-  categorias: MaestroTipoModel[] = [];
-  movimiento: MovimientoModel;
+  /**
+   * Muestra u oculta el formulario
+   */
+  private formularioVisible = false;
 
-  
-  // las dependencias se declaran como parámetros del constructor  
-  /** Este componente depende del objeto DatosService */
-  constructor(private datosService: DatosService) {
-    // No se escribe nada en el constructor ni en la clase
-    // Los argumentos los convierte TypeScript en propiedades
-   }
+  /** Propiedad con el array para montar la lista de tipos de movimientos posibles */
+  private tiposMovimiento: any[] = [
+    { id: 1, texto: 'Ingreso' },
+    { id: 2, texto: 'Gasto' }];
+  /**
+   * Categorías, por tipo de movimiento
+   */
+  private categoriasTipoMovimiento: any[] = [
+    { id: 1, texto: 'Nómina', tipo: 1 },
+    { id: 2, texto: 'Ventas', tipo: 1 },
+    { id: 3, texto: 'Intereses', tipo: 1 },
+    { id: 4, texto: 'Hipoteca', tipo: 2 },
+    { id: 5, texto: 'Compras', tipo: 2 },
+    { id: 6, texto: 'Domiciliaciones', tipo: 2 },
+    { id: 7, texto: 'Impuestos', tipo: 2 }];
+  /**
+   * Categorias filtradas para el tipo del movimiento actual
+   */
+  private categorias: any[] = [];
 
-  /** Al iniciarse el componente se cargan los datos*/
+  /**
+   * Movimiento en curso
+   *  */
+  movimiento: any = {};
+  /**
+   * Base de datos de movimientos
+   */
+  movimientos: any[] = [];
+
+  constructor( ) { /** VACÍO */}
+  /**
+   * Evento que se lanaza al inicio del ciclo de vida del componente
+   */
   ngOnInit() {
-    this.tipos = this.datosService.tipos;
-    this.movimiento = this.datosService.getNuevoMovimiento();
-    this.cambioTipo();
+    this.movimiento = {
+      fecha : new Date(),
+      importe: 0,
+      tipo: this.tiposMovimiento[0].id
+    };
+    this.alCambiarTipo();
   }
-  /** Al cambiar el tipo de un movimiento se recargan las categorías */
-  cambioTipo() {
-    this.categorias = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
-    // Cambios en el tipo, crean cambios en la categoría
-    this.movimiento.categoria = this.datosService.getCategoriasPorTipo(this.movimiento.tipo)[0].id;
+
+  private mostrarFormulario = () => {
+    this.formularioVisible = true;
   }
-  /** Guarda un movimiento en el almacén */
-  guardarMovimiento() {
-    this.datosService.postMovimiento(this.movimiento);
+
+  private ocultarFormulario = () => {
+    this.formularioVisible = false;
+  }
+
+  /**
+   * Recalcula las categorias válidas para el tipo del movimiento actual
+   */
+  alCambiarTipo() {
+    // recargar categorías cuando cambiamos de tipo de movimiento
+    this.categorias = this.categoriasTipoMovimiento
+      .filter(c => c.tipo === this.movimiento.tipo);
+    // Asignación por defecto de la primera categoría
+    this.movimiento.categoria = this.categorias[0].id;
+  }
+  /**
+   * Clona y almacena el movimiento actual
+   */
+  alGuardarMovimiento() {
+    const clone = Object.assign({}, this.movimiento);
+    this.movimientos.push(clone);
   }
 }

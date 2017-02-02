@@ -1,14 +1,7 @@
 <header>
   <h5>Nuevo Movimiento</h5>
-  <!--(click) es un evento [hidden] es una propiedad -->
-  <span [hidden]="formularioVisible">
-    <button (click)="mostrarFormulario()">Mostrar Formulario</button>
-  </span>
-  <span [hidden]="!formularioVisible">
-    <button (click)="ocultarFormulario()" >Ocultar Formulario</button>
-  </span>
 </header>
-<main *ngIf="formularioVisible">
+<main>
   <!-- * directivas estructurales-->
   <form>
     <!--banana in a box, lectura y escritura-->

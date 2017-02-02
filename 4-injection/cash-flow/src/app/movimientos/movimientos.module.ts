@@ -1,20 +1,26 @@
+import { DatosService } from './datos.service';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { SharedModule } from './../shared/shared.module';
+import { ListaComponent } from './lista/lista.component';
 /**
  * Una aplicación se compoen de unos o más módulos funcionales
  */
 @NgModule({
-  imports: [
+  imports: [ // dependencias de otros módulos
     SharedModule
-  ], // dependencias de otros módulos
-  declarations: [
+  ],
+  declarations: [ // componentes que se declaran en este módulo de movimientos
     MovimientosComponent,
-    NuevoComponent // este componente no se exporta
-  ], // componentes que se declaran en este módulo de movimientos
-  exports: [
+    NuevoComponent,
+    ListaComponent // este componente no se exporta
+  ],
+  exports: [ // componentes que exporta para ser usados en otros módulos
     MovimientosComponent
-  ] // componentes que exporta para ser usados en otros módulos
+  ],
+  providers: [ // registro del servicio de datos como un proveedor inyectable
+    DatosService
+  ]
 })
 export class MovimientosModule { }

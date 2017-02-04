@@ -8,7 +8,7 @@ import { Tipo } from './../modelos/tipo';
 @Component({
   selector: 'cf-nuevo',
   templateUrl: './nuevo.component.html',
-  styleUrls: ['./nuevo.component.css'] // ruta para hpjas de estilo propias
+  styleUrls: ['./nuevo.component.css'] // ruta para hojas de estilo propias
 })
 /**
  *  Componente para crear movimientos

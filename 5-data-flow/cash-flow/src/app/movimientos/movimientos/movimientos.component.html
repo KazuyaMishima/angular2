@@ -9,15 +9,15 @@
     <!--(eventos)="para recibir información de componentes hijos @Output"-->
 
 
-    <app-nuevo
+    <cf-nuevo
       [tipos]="tipos"
       [categorias]="categorias"
       [movimiento]="movimiento"
       (guardarMovimiento)="guardarMovimiento()"
       (cambiarTipo)="cambiarTipo()">
-    </app-nuevo>
+    </cf-nuevo>
     <hr/>
-    <app-lista [movimientos]="movimientos">
-    </app-lista>
+    <cf-lista [movimientos]="movimientos">
+    </cf-lista>
   </main>
 </section>

@@ -18,7 +18,7 @@
     <div class="row">
       <label for="tipo" class="column">Tipo: </label>
       <!--bucle para definir las opciones de radio buttons-->
-      <div *ngFor="let tipo of tiposMovimiento" class="column">
+      <div *ngFor="let tipo of tipos" class="column">
         <!--evento de cambio del modelo-->
         <input type="radio" name="tipo" [value]="tipo.id" [(ngModel)]="movimiento.tipo" (ngModelChange)="alCambiarTipo()">
         <!--interpolación del atributo class -->

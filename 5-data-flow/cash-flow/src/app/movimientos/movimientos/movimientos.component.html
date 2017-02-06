@@ -5,9 +5,19 @@
     </h3>
   </header>
   <main class="container">
-    <!--Componentes propios-->
-    <cf-nuevo></cf-nuevo>
+    <!--[popiedades]="para enviar información a componentes hijos @Input"-->
+    <!--(eventos)="para recibir información de componentes hijos @Output"-->
+
+
+    <app-nuevo
+      [tipos]="tipos"
+      [categorias]="categorias"
+      [movimiento]="movimiento"
+      (guardarMovimiento)="guardarMovimiento()"
+      (cambiarTipo)="cambiarTipo()">
+    </app-nuevo>
     <hr/>
-    <cf-lista></cf-lista>
+    <app-lista [movimientos]="movimientos">
+    </app-lista>
   </main>
 </section>

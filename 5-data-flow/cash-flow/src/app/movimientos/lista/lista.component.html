@@ -3,14 +3,14 @@
 </header>
 <main>
   <article>
-    <!--el pipe async se subscribe a un observable-->
+    <!--el pipe async ya no se usa, pues la propiedad mueve los datos -->
     <!--los pipes se pueden entubar-->
     <blockquote>
       <p><em>Modo JSON.</em></p>
     </blockquote>
     <div class="row container">
       <code>
-          {{ movimientos$ | async | json }}
+          {{ movimientos | json }}
       </code>
     </div>
   </article>
@@ -20,7 +20,7 @@
     </blockquote>
     <div class="row container">
       <ul>
-        <li *ngFor="let movimiento of movimientos$ | async">
+        <li *ngFor="let movimiento of movimientos">
           {{ movimiento | json }}
         </li>
       </ul>
@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let movimiento of movimientos$ | async">
+          <tr *ngFor="let movimiento of movimientos">
             <td>{{ movimiento.fecha | date }}</td>
             <td>{{ movimiento.tipo }}</td>
             <td>{{ movimiento.categoria }}</td>

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Categoria } from './../modelos/categoria';
-import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
 
@@ -14,43 +13,36 @@ import { Tipo } from './../modelos/tipo';
  *  Componente para crear movimientos
  **/
 export class NuevoComponent implements OnInit {
-
-  /** Propiedad con el array para montar la lista de tipos de movimientos posibles */
-  private tiposMovimiento: Tipo[] = [];
-  /**
-   * Categorias filtradas para el tipo del movimiento actual
-   */
-  private categorias: Categoria[] = [];
-  /**
-   * Movimiento en curso
-   *  */
-  movimiento: Movimiento;
+  // recibe datos vía propiedades
+  /** propiedad para entrada de tipos de movimiento */
+  @Input() tipos: Tipo[] = [];
+  /** propiedad para entrada de categorias de movimiento */
+  @Input() categorias: Categoria[] = [];
+  /** propiedad para entrada de un movimiento */
+  @Input() movimiento: Movimiento;
 
 
-  constructor(private datosService: DatosService ) { /** VACÍO */}
-  /**
-   * Evento que se lanaza al inicio del ciclo de vida del componente
-   */
-  ngOnInit() {
-    this.tiposMovimiento = this.datosService.getTiposMovimiento();
-    this.movimiento = this.datosService.getNuevoMovimiento();
-    this.alCambiarTipo();
-  }
+  // emite eventos de intención de cambio y de guardado
+  /** propiedad para emitir el evento de guardado del movimiento actual */
+  @Output() guardarMovimiento = new EventEmitter<Movimiento>();
+  /** propiedad para emitir el evento de cambio de tipo del movimiento actual */
+  @Output() cambiarTipo = new EventEmitter<number>();
 
+  // ya no se usa datos service
+  // es un componente tonto ()
+  constructor() { /** VACÍO */}
+
+  ngOnInit() {   }
   /**
    * Recalcula las categorias válidas para el tipo del movimiento actual
    */
-  alCambiarTipo() {
-    // recargar categorías cuando cambiamos de tipo de movimiento
-    this.categorias = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);;
-    // Asignación por defecto de la primera categoría
-    this.movimiento.categoria = this.categorias[0].id;
+  alCambiarTipo(): void {
+    this.cambiarTipo.emit(this.movimiento.tipo);
   }
   /**
    * Almacena el movimiento actual
    */
-  alGuardarMovimiento() {
-    console.log('al guardar' + JSON.stringify(this.movimiento));
-    this.datosService.postMovimiento(this.movimiento);
+  alGuardarMovimiento(): void {
+    this.guardarMovimiento.emit(this.movimiento);
   }
 }

@@ -1,13 +1,14 @@
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { MovimientosModule } from './movimientos/movimientos.module'; // Módulo funcional propio
+import { NgModule } from '@angular/core';
+import { SharedModule } from './shared/shared.module'; // Módulo propio compartido
 /**
  * importación de módulos con objetos y utilidades comunes del framework y propios
 /* importación del componente raíz, definido en esta misma carpeta
 */
 
-import { AppComponent } from './app.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { MovimientosModule } from './movimientos/movimientos.module'; // Módulo funcional propio
-import { NgModule } from '@angular/core';
-import { SharedModule } from './shared/shared.module'; // Módulo propio compartido
 
 // decorador que define un módulo
 @NgModule({
@@ -15,6 +16,7 @@ import { SharedModule } from './shared/shared.module'; // Módulo propio compart
     AppComponent
   ],
   imports: [ // otros módulos que necesitamos para que este funcione
+    AppRoutingModule, // el módulo de rutas ya configurado
     BrowserModule,
     MovimientosModule,
     SharedModule

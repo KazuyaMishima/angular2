@@ -60,6 +60,7 @@ export class DatosService {
   /** Guarda un movimiento en el almacén, y notifdica ese evento */
   postMovimiento(movimiento: Movimiento) {
     const movimientoClone: Movimiento = Object.assign({}, movimiento);
+    movimientoClone._id = Date.now().toString();
     this.movimientos.push(movimientoClone);
     // genera un nuevo valor en el observable
     this.movimientos$.next(this.movimientos);
@@ -69,5 +70,10 @@ export class DatosService {
   getMovimientos$(): Observable<Movimiento[]> {
     // se comporta como un observable
     return this.movimientos$.asObservable();
+  }
+
+  /** Obtiene el movimiento para un identificador concreto */
+  getMovimientoBy_Id(_id): Movimiento {
+    return this.movimientos.find(m => m._id === _id);
   }
 }

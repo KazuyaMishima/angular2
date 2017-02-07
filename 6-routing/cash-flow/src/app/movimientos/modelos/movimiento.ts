@@ -4,6 +4,7 @@ export class Movimiento {
     public fecha: Date,
     public importe: number,
     public tipo: number,
-    public categoria: number) {
+    public categoria: number,
+    public _id?: string ) {
   }
 }

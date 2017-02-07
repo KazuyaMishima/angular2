@@ -1,33 +1,33 @@
-// importación del componente raíz, definido en esta misma carpeta
+/**
+ * importación de módulos con objetos y utilidades comunes del framework y propios
+/* importación del componente raíz, definido en esta misma carpeta
+*/
+
 import { AppComponent } from './app.component';
-// importación de módulo de enrutado asociado
-import { AppRoutingModule } from './app-routing.module';
-// objetos con utilidades comunes del framework
 import { BrowserModule } from '@angular/platform-browser';
-import { ContactoModule } from './contacto/contacto.module';
-import { FormsModule } from '@angular/forms';
-// importación de módulos de funcionalidad
-import { HomeModule } from './home/home.module';
-import { HttpModule } from '@angular/http';
-import { MovimientosModule } from './movimientos/movimientos.module';
+import { MovimientosModule } from './movimientos/movimientos.module'; // Módulo funcional propio
 import { NgModule } from '@angular/core';
+import { SharedModule } from './shared/shared.module'; // Módulo propio compartido
+
 // decorador que define un módulo
 @NgModule({
-  declarations: [
+  declarations: [ // cosas declaradas en este módulo
     AppComponent
-  ], // cosas declaradas en este módulo
-  imports: [
+  ],
+  imports: [ // otros módulos que necesitamos para que este funcione
     BrowserModule,
-    ContactoModule,
-    FormsModule,
-    HttpModule,
-    HomeModule, // el módulo de bienvenida
-    MovimientosModule, // el módulo de movimientos
-    AppRoutingModule // el módulo de rutas ya configurado
-  ], // otros módulos que necesitamos para que este funcione
-  providers: [] , // inyección de servicios comunes para la aplicación
-  bootstrap: [AppComponent] // componente raíz para el arranque
+    MovimientosModule,
+    SharedModule
+  ],
+  bootstrap: [ // componente raíz para el arranque
+    AppComponent
+  ]
 })
-// los módulos son clases contendoras 
-// habitualmente con poco o ningún código
-export class AppModule { }
+/**
+ * Módulo raiz de la aplicación
+ * Destinado a importar la funcionalidad implentada en otros módulos
+ */
+export class AppModule {
+  // los módulos son clases contendoras 
+  // habitualmente con poco o ningún código
+}

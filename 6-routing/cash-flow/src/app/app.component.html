@@ -1,15 +1,12 @@
-<nav>
-   <a routerLink="/" >Cash - Flow</a>
-   <a routerLink="/movimientos" >Movimientos</a>
-   <a routerLink="/contacto" >Contacto</a>
-   <a routerLink="/login" >Login</a>
-</nav>
-<h1>
-  {{title}}
-</h1>
-<!--el componente movimientos desaparece-->
-<!--<app-movimientos></app-movimientos>-->
-
-<!--ahora usaremos un componente nativo 
-que el enrutador cargue una página dinámicamente-->
-<router-outlet></router-outlet>
+<article class="container">
+  <header>
+    <h1>
+      <!--enlace con propiedades del componente-->
+      {{title}}
+    </h1>
+  </header>
+  <main>
+    <!--componente movimientos-->
+    <cf-movimientos></cf-movimientos>
+  </main>
+</article>

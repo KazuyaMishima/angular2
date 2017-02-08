@@ -1,3 +1,8 @@
+// Operador de transformación
+import 'rxjs/add/operator/map';
+
+import { Http, Response } from '@angular/http';
+
 import { Categoria } from './modelos/categoria';
 import { Injectable } from '@angular/core';
 import { Movimiento } from './modelos/movimiento';
@@ -12,44 +17,37 @@ import { Tipo } from './modelos/tipo';
  */
 @Injectable()
 export class DatosService {
-  /** Propiedad con el array para montar la lista de tipos de movimientos posibles */
-  public tiposMovimiento: Tipo[] = [
-    { id: 1, texto: 'Ingreso' },
-    { id: 2, texto: 'Gasto' }];
-  /**
-   * Categorías, por tipo de movimiento
-   */
-  public categoriasTipoMovimiento: Categoria[] = [
-    { id: 1, texto: 'Nómina', tipo: 1 },
-    { id: 2, texto: 'Ventas', tipo: 1 },
-    { id: 3, texto: 'Intereses', tipo: 1 },
-    { id: 4, texto: 'Hipoteca', tipo: 2 },
-    { id: 5, texto: 'Compras', tipo: 2 },
-    { id: 6, texto: 'Domiciliaciones', tipo: 2 },
-    { id: 7, texto: 'Impuestos', tipo: 2 }];
-  /**
-   * Base de datos de movimientos
-   */
-  private movimientos: Movimiento[] = [];
+  private categoriasTipoMovimiento: Categoria[] = [];
 
-  /** Emisor de eventos relacionados con el almacén de movimientos */
-  private movimientos$: Subject<Movimiento[]> = new Subject<Movimiento[]>();
-
-  constructor() { }
+  constructor(private http: Http) { }
 
   /** Crea un nuevo movimiento */
   getNuevoMovimiento(): Movimiento {
     return new Movimiento(
       new Date(),
       0,
-      this.tiposMovimiento[0].id,
-      this.categoriasTipoMovimiento[0].id
+      1,
+      1
     );
   }
 
   /** Devuelve la lista de tipos de movimientos */
-  getTiposMovimiento(): Tipo[] {
-    return this.tiposMovimiento;
+  getTiposMovimiento(): Observable<Tipo[]> {
+    // las llamadas devuelven observables
+    // ocultan la definción de la ruta y demás
+    return this.http
+      .get(`pub/maestros/tipos`)
+      .map((r: Response) => r.json());
+  }
+
+  // Se devuelven Observables de tipos concretos
+  getCategorias(): Observable<Categoria[]> {
+    // las llamadas devuelven observables
+    // ocultan la definción de la ruta y demás
+    return this.http
+      .get(`pub/maestros/categorias`)
+      .map(r => r.json())
+      .map(categorias => this.categoriasTipoMovimiento = categorias);
   }
 
   /** Devuelve la lista de categorias para un tipo concreto */
@@ -57,23 +55,32 @@ export class DatosService {
     return this.categoriasTipoMovimiento.filter(c => c.tipo === tipo);
   }
 
-  /** Guarda un movimiento en el almacén, y notifdica ese evento */
+  /** Guarda un movimiento en el almacén, y notifica ese evento */
   postMovimiento(movimiento: Movimiento) {
     const movimientoClone: Movimiento = Object.assign({}, movimiento);
     movimientoClone._id = Date.now().toString();
-    this.movimientos.push(movimientoClone);
-    // genera un nuevo valor en el observable
-    this.movimientos$.next(this.movimientos);
+    const body = JSON.stringify(movimientoClone);
+    if (movimiento._id && movimiento._id !== '_') {
+      return this.http
+        .put(`priv/movimientos/${movimiento._id}`, body);
+    } else {
+      return this.http
+        .post(`priv/movimientos`, body);
+    }
   }
 
   /** Devuelve un observable q  ue notifica cambios en el almacén de movimientos */
   getMovimientos$(): Observable<Movimiento[]> {
     // se comporta como un observable
-    return this.movimientos$.asObservable();
+    return this.http
+      .get(`priv/movimientos`)
+      .map(r => r.json());
   }
 
   /** Obtiene el movimiento para un identificador concreto */
-  getMovimientoBy_Id(_id): Movimiento {
-    return this.movimientos.find(m => m._id === _id);
+  getMovimientoBy_Id(_id): Observable<Movimiento> {
+    return this.http
+      .get(`priv/movimientos/${_id}`)
+      .map(r => r.json());
   }
 }

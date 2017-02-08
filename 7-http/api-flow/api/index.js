@@ -1,4 +1,3 @@
-// RAML Swagger documentar REST
 
 /** carga de módulos propios que gestionan cada ruta del api */
 const usuarios = require('./usuarios.js');

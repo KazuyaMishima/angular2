@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "@albertobasalo",
   "license": "ISC",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",

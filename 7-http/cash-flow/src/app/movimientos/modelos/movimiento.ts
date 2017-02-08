@@ -5,6 +5,7 @@ export class Movimiento {
     public importe: number,
     public tipo: number,
     public categoria: number,
-    public _id?: string ) {
+    public _id?: string,
+    public usuario?: string) {
   }
 }

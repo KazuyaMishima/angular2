@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 
 @Component({
@@ -16,15 +17,13 @@ import { Movimiento } from './../modelos/movimiento';
 })
 export class ListaComponent implements OnInit {
 
-  // Recibe los datos vía propiedad desde su contenedor
-  /** Array de movimientos que debe pintar */
-  @Input() movimientos: Movimiento[];
+movimientos: Movimiento[];
+  /** Este componente depende del objeto DatosService */
+  constructor(private datosService: DatosService) { }
 
-  // Sin dependencias
-  constructor() { }
-
+  /** Al iniciar el componente se enlaza con el almacén de movimientos */
   ngOnInit() {
-
+    this.datosService.getMovimientos$().subscribe(m => this.movimientos = m);
   }
 
 }

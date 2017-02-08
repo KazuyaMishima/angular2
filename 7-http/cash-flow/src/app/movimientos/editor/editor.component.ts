@@ -20,7 +20,9 @@ export class EditorComponent implements OnInit {
     this.route.params
       .subscribe(params => {
         const _id = params['id'].toString(); // recpeción del parámetro
-        this.movimiento = this.datosService.getMovimientoBy_Id(_id); // consulta al servicio
+        this.datosService
+          .getMovimientoBy_Id$(_id)
+          .subscribe(r => this.movimiento = r); // consulta al servicio
       });
   }
 

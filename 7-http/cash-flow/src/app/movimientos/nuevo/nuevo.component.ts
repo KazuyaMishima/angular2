@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Categoria } from './../modelos/categoria';
+import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
 
@@ -13,36 +14,43 @@ import { Tipo } from './../modelos/tipo';
  *  Componente para crear movimientos
  **/
 export class NuevoComponent implements OnInit {
-  // recibe datos vía propiedades
+  // ya no recibe datos vía propiedades
   /** propiedad para entrada de tipos de movimiento */
-  @Input() tipos: Tipo[] = [];
+  tipos: Tipo[] = [];
   /** propiedad para entrada de categorias de movimiento */
-  @Input() categorias: Categoria[] = [];
+  categorias: Categoria[] = [];
   /** propiedad para entrada de un movimiento */
-  @Input() movimiento: Movimiento;
-
-
-  // emite eventos de intención de cambio y de guardado
-  /** propiedad para emitir el evento de guardado del movimiento actual */
-  @Output() guardarMovimiento = new EventEmitter<Movimiento>();
-  /** propiedad para emitir el evento de cambio de tipo del movimiento actual */
-  @Output() cambiarTipo = new EventEmitter<number>();
+  movimiento: Movimiento;
 
   // ya no se usa datos service
   // es un componente tonto ()
-  constructor() { /** VACÍO */}
+  constructor(private datosService: DatosService) { /** VACÍO */ }
 
-  ngOnInit() {   }
+  ngOnInit() {
+    this.datosService.getTiposMovimiento$().subscribe(tipos => {
+      this.tipos = tipos;
+      this.datosService.getCategorias$().subscribe(categorias => {
+        this.categorias = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
+      });
+    });
+  }
   /**
    * Recalcula las categorias válidas para el tipo del movimiento actual
    */
   alCambiarTipo(): void {
-    this.cambiarTipo.emit(this.movimiento.tipo);
+    this.categorias = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
+    // Cambios en el tipo, crean cambios en la categoría
+    const categoriasPorTipo = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
+    if (categoriasPorTipo && categoriasPorTipo.length > 0) {
+      this.movimiento.categoria = this.datosService.getCategoriasPorTipo(this.movimiento.tipo)[0].id;
+    }
   }
   /**
    * Almacena el movimiento actual
    */
   alGuardarMovimiento(): void {
-    this.guardarMovimiento.emit(this.movimiento);
+    this.datosService
+      .postMovimiento$(this.movimiento)
+      .subscribe(r => console.log('Movimiento guardado'));
   }
 }

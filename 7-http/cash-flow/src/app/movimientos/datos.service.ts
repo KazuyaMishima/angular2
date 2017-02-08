@@ -32,7 +32,7 @@ export class DatosService {
   }
 
   /** Devuelve la lista de tipos de movimientos */
-  getTiposMovimiento(): Observable<Tipo[]> {
+  getTiposMovimiento$(): Observable<Tipo[]> {
     // las llamadas devuelven observables
     // ocultan la definción de la ruta y demás
     return this.http
@@ -41,7 +41,7 @@ export class DatosService {
   }
 
   // Se devuelven Observables de tipos concretos
-  getCategorias(): Observable<Categoria[]> {
+  getCategorias$(): Observable<Categoria[]> {
     // las llamadas devuelven observables
     // ocultan la definción de la ruta y demás
     return this.http
@@ -56,7 +56,7 @@ export class DatosService {
   }
 
   /** Guarda un movimiento en el almacén, y notifica ese evento */
-  postMovimiento(movimiento: Movimiento) {
+  postMovimiento$(movimiento: Movimiento) {
     const movimientoClone: Movimiento = Object.assign({}, movimiento);
     movimientoClone._id = Date.now().toString();
     const body = JSON.stringify(movimientoClone);
@@ -78,7 +78,7 @@ export class DatosService {
   }
 
   /** Obtiene el movimiento para un identificador concreto */
-  getMovimientoBy_Id(_id): Observable<Movimiento> {
+  getMovimientoBy_Id$(_id): Observable<Movimiento> {
     return this.http
       .get(`priv/movimientos/${_id}`)
       .map(r => r.json());

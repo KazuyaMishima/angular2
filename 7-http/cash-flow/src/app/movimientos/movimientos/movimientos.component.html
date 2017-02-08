@@ -3,22 +3,12 @@
     <h3>
       Alta y visualización de tus ingresos y gastos
     </h3>
+    <nav>
+      <a routerLink="/movimientos/nuevo">Nuevo Movimiento</a>
+      <a routerLink="/movimientos/lista">Lista de Movimientos</a>
+    </nav>
   </header>
   <main class="container">
-    <!--[popiedades]="para enviar información a componentes hijos @Input"-->
-    <!--(eventos)="para recibir información de componentes hijos @Output"-->
-
-
-    <cf-nuevo
-      [tipos]="tipos"
-      [categorias]="categorias"
-      [movimiento]="movimiento"
-      (guardarMovimiento)="guardarMovimiento()"
-      (cambiarTipo)="cambiarTipo()">
-    </cf-nuevo>
-    <hr/>
-    <cf-lista [movimientos]="movimientos">
-    </cf-lista>
     <router-outlet></router-outlet>
   </main>
 </section>

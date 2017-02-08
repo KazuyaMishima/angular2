@@ -7,11 +7,11 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   { path: 'inicio', redirectTo: '' },
   // { path: 'contacto', redirectTo: '' },
-  {
+  /*{
     path: '**', // para casos not-found
     redirectTo: '',
     pathMatch: 'full'
-  }
+  }*/
 ];
 
 @NgModule({

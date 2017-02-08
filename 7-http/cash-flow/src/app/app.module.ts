@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MovimientosModule } from './movimientos/movimientos.module'; // Módulo funcional propio
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/shared.module'; // Módulo propio compartido
+import { UserModule } from './user/user.module';
 /**
  * importación de módulos con objetos y utilidades comunes del framework y propios
 /* importación del componente raíz, definido en esta misma carpeta
@@ -19,7 +20,8 @@ import { SharedModule } from './shared/shared.module'; // Módulo propio compart
     AppRoutingModule, // el módulo de rutas ya configurado
     BrowserModule,
     MovimientosModule,
-    SharedModule
+    SharedModule,
+    UserModule
   ],
   bootstrap: [ // componente raíz para el arranque
     AppComponent

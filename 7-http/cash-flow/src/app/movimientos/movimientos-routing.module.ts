@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 /** Importación de los componentes enrutables */
 import { EditorComponent } from './editor/editor.component';
 import { ListaComponent } from './lista/lista.component';
-import { MovimientosComponent } from './movimientos.component';
+import { MovimientosComponent } from './movimientos/movimientos.component';
 import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
 
@@ -33,17 +33,7 @@ const routes: Routes = [
     component: EditorComponent // se verá dentro del router-oulet principal
   }
 ];
-/**
- * Componentes usados por estas rutas
- * El módulo funcional asociado debe declararlos
- * Para no hacerlo dos veces, se exportan ya sus importaciones locales
- */
-export const routableComponents = [
-  EditorComponent,
-  NuevoComponent,
-  ListaComponent,
-  MovimientosComponent
-]
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)], // configuración para un módulo hijo

@@ -1,26 +1,30 @@
-/** Módulo de enrutado y los componentes que utiliza */
-import { MovimientosRoutingModule, routableComponents } from './movimientos-routing.module';
-
-import { CommonModule } from '@angular/common';
-// Importar el servicio DatosService desde el fichero
 import { DatosService } from './datos.service';
-import { FormsModule } from '@angular/forms';
+import { EditorComponent } from './editor/editor.component';
+import { ListaComponent } from './lista/lista.component';
+import { MovimientosComponent } from './movimientos/movimientos.component';
+import { MovimientosRoutingModule } from './movimientos-routing.module';
 import { NgModule } from '@angular/core';
-
+import { NuevoComponent } from './nuevo/nuevo.component';
+import { SharedModule } from './../shared/shared.module';
+/**
+ * Una aplicación se compoen de unos o más módulos funcionales
+ */
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
+  imports: [ // dependencias de otros módulos
+    SharedModule,
     MovimientosRoutingModule
-  ], // dependencias de otros módulos
-  declarations: [
-    routableComponents // importados desde el módulo de enrutado
-  ], // Componentes declarados en este módulo
-  exports: [
+  ],
+  declarations: [ // componentes que se declaran en este módulo de movimientos
+    MovimientosComponent,
+    NuevoComponent,
+    ListaComponent,
+    EditorComponent
+  ],
+  exports: [ // Ya no se exporta ningún componente
 
-  ], // no necesita exportar nada
-  providers: [
+  ],
+  providers: [ // registro del servicio de datos como un proveedor inyectable
     DatosService
-  ] // registro del servicio como un provvedor del módulo
+  ]
 })
 export class MovimientosModule { }

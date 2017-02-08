@@ -1,0 +1,28 @@
+<h5>Listado de Movimientos</h5>
+<!--el pipe async ya no se usa, pues la propiedad mueve los datos -->
+<!--los pipes se pueden entubar $ | async-->
+<div class="row">
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Categoría</th>
+        <th>Importe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movimiento of movimientos ">
+        <!--ruta paramética-->
+        <td> <a [routerLink]="['/movimientos', movimiento._id]">{{ movimiento._id }}</a> </td>
+        <td>{{ movimiento.fecha | date }}</td>
+        <td>{{ movimiento.tipo }}</td>
+        <td>{{ movimiento.categoria }}</td>
+        <td [ngClass]="{tipo1: movimiento.tipo==1, tipo2: movimiento.tipo==2}" >{{ movimiento.importe | number}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

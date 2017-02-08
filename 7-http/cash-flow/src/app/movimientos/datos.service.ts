@@ -1,108 +1,79 @@
-// Operador de transformación
-import 'rxjs/add/operator/map';
-//Operador para captura de errores
-import 'rxjs/add/operator/catch';
-
-// Importación directa de tipos
-import { MaestroModel, MaestroTipoModel, Movimiento, MovimientoModel } from './datos.model';
-
-import { Http } from '@angular/http';
-import { HttpToolsService } from './../shared/http-tools.service';
+import { Categoria } from './modelos/categoria';
 import { Injectable } from '@angular/core';
+import { Movimiento } from './modelos/movimiento';
 // permite la suscripción a cambios de un stream
 import { Observable } from 'rxjs/Observable';
-// se comporta como un obseervable y además permite la emisión de datos hacia un observable
+// se comporta como un observable y además permite la emisión de datos hacia un observable
 import { Subject } from 'rxjs/Subject';
+import { Tipo } from './modelos/tipo';
 
 /**
- * Programación reactiva con observables
+ * Un servicio es una clase inyectable en otro servicio o componente
  */
-
-
-// decoración para marcarlo como inyectable
 @Injectable()
 export class DatosService {
-  private urlBase: string = 'http://localhost:3030/api'
-  private categorias: MaestroTipoModel[] = [];
-  
+  /** Propiedad con el array para montar la lista de tipos de movimientos posibles */
+  public tiposMovimiento: Tipo[] = [
+    { id: 1, texto: 'Ingreso' },
+    { id: 2, texto: 'Gasto' }];
+  /**
+   * Categorías, por tipo de movimiento
+   */
+  public categoriasTipoMovimiento: Categoria[] = [
+    { id: 1, texto: 'Nómina', tipo: 1 },
+    { id: 2, texto: 'Ventas', tipo: 1 },
+    { id: 3, texto: 'Intereses', tipo: 1 },
+    { id: 4, texto: 'Hipoteca', tipo: 2 },
+    { id: 5, texto: 'Compras', tipo: 2 },
+    { id: 6, texto: 'Domiciliaciones', tipo: 2 },
+    { id: 7, texto: 'Impuestos', tipo: 2 }];
+  /**
+   * Base de datos de movimientos
+   */
+  private movimientos: Movimiento[] = [];
 
-  // Reclamar la dependencia sobre http  
-  // Se ha registrado en el módulo raíz, se supone uso común a varios servicios
-  constructor(private http: Http, private httpToolsService: HttpToolsService) {
-  }
+  /** Emisor de eventos relacionados con el almacén de movimientos */
+  private movimientos$: Subject<Movimiento[]> = new Subject<Movimiento[]>();
 
+  constructor() { }
 
-  getNuevoMovimiento(): MovimientoModel {
-    let fechaActual:Date = new Date(Date.now());
+  /** Crea un nuevo movimiento */
+  getNuevoMovimiento(): Movimiento {
     return new Movimiento(
-      fechaActual,
+      new Date(),
       0,
-      1,
-      1
+      this.tiposMovimiento[0].id,
+      this.categoriasTipoMovimiento[0].id
     );
   }
 
-
-  // Se devuelven Observables de tipos concretos   
-  getTipos(): Observable<MaestroModel[]> {
-    // las llamadas devuelven observables
-    // ocultan la definción de la ruta y demás
-    return this.http
-      .get(`${this.urlBase}/pub/maestros/tipos`)
-      .map(this.httpToolsService.obtenerDatos)
+  /** Devuelve la lista de tipos de movimientos */
+  getTiposMovimiento(): Tipo[] {
+    return this.tiposMovimiento;
   }
 
-  // Se devuelven Observables de tipos concretos   
-  getCategorias(): Observable<MaestroTipoModel[] > {
-    // las llamadas devuelven observables
-    // ocultan la definción de la ruta y demás
-    return this.http
-      .get(`${this.urlBase}/pub/maestros/categorias`)
-      .map(this.httpToolsService.obtenerDatos)
-      .map(categorias=>this.categorias=categorias)
+  /** Devuelve la lista de categorias para un tipo concreto */
+  getCategoriasPorTipo(tipo): Categoria[] {
+    return this.categoriasTipoMovimiento.filter(c => c.tipo === tipo);
   }
 
-  getCategoriasPorTipo( tipo): MaestroTipoModel[] {
-    return this.categorias.filter(c => c.type === tipo);
-  }
-
+  /** Guarda un movimiento en el almacén, y notifdica ese evento */
   postMovimiento(movimiento: Movimiento) {
-    /**
-     * primero preparación de datos para su envío
-     * después suscripción y operaciones sobre la respuesta
-     */
-    let body = JSON.stringify(movimiento)
-    let options = this.httpToolsService.configurarCabeceras()
-    console.log(body);
-    if (movimiento._id && movimiento._id !=='_') {
-      return this.http
-        .put(`${this.urlBase}/priv/movimientos/${movimiento._id}`, body, options)
-        .catch(this.httpToolsService.tratarErrores);
-    }
-    else {
-      console.log('posting...');
-      return this.http
-        .post(`${this.urlBase}/priv/movimientos`, body, options)
-        .catch(this.httpToolsService.tratarErrores);
-    }
+    const movimientoClone: Movimiento = Object.assign({}, movimiento);
+    movimientoClone._id = Date.now().toString();
+    this.movimientos.push(movimientoClone);
+    // genera un nuevo valor en el observable
+    this.movimientos$.next(this.movimientos);
   }
 
-  getMovimientos$(): Observable<MovimientoModel[]> {
-    let options = this.httpToolsService.configurarCabeceras()
-    return this.http
-      .get(`${this.urlBase}/priv/movimientos`,options)
-      .map(this.httpToolsService.obtenerDatos)
-      .catch(this.httpToolsService.tratarErrores)
-  }  
-
-  getMovimientoPor_Id$(_id) : Observable<MovimientoModel>{
-    let options = this.httpToolsService.configurarCabeceras()
-    return this.http
-      .get(`${this.urlBase}/priv/movimientos/${_id}`,options)
-      .map(this.httpToolsService.obtenerDatos)
-      .catch(this.httpToolsService.tratarErrores)
+  /** Devuelve un observable q  ue notifica cambios en el almacén de movimientos */
+  getMovimientos$(): Observable<Movimiento[]> {
+    // se comporta como un observable
+    return this.movimientos$.asObservable();
   }
 
-  // funciones auxiliares  
-  getCategoriaBase = (tipoId) => this.getCategoriasPorTipo(tipoId)[0].id;
+  /** Obtiene el movimiento para un identificador concreto */
+  getMovimientoBy_Id(_id): Movimiento {
+    return this.movimientos.find(m => m._id === _id);
+  }
 }

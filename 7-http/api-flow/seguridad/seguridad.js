@@ -31,19 +31,14 @@ function usarSeguridad(app, ruta) {
     app.use(ruta, (req, res, next) => {
         // la validación de la sesión es en memoria
         // jwt descifra y valida un token
-        let sessionId = req.get('sessionId')
-        let sesion = jwt.verify(sessionId)
+        const authorization = req.get('Authorization');
+        const sessionId = authorization.split(' ')[1];
+        const sesion = jwt.verify(sessionId);
         if (sesion) {
-            req.usuario = sesion.email
-            next()
+            req.usuario = sesion.email;
+            next();
         } else {
-            res.status(401).send('Credencial inválida')
+            res.status(401).send('Credencial inválida');
         }
     })
 }
-
-
-
-
-
-

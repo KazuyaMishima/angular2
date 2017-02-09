@@ -19,10 +19,6 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
-  /**
-   * Parameters for translations and custom validations
-   */
-  private passwordValidation = { minlength : 4 };
 
   constructor(private userService: UserService) { }
 
@@ -32,13 +28,13 @@ export class LoginComponent implements OnInit {
    * the user clicks the register in button
    */
   alRegistrar() {
-    this.userService.postUser(this.credentials);
+    this.userService.postUser$(this.credentials).subscribe();
   }
   /**
    * the user clicks the log in button
    */
   alEntrar() {
-    this.userService.postSesion(this.credentials);
+    this.userService.postSesion$(this.credentials).subscribe();
   }
 
   showError(control) {

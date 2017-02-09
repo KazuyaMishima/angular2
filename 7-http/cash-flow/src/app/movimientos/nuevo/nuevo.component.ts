@@ -27,6 +27,7 @@ export class NuevoComponent implements OnInit {
   constructor(private datosService: DatosService) { /** VACÍO */ }
 
   ngOnInit() {
+    this.movimiento = this.datosService.getNuevoMovimiento();
     this.datosService.getTiposMovimiento$().subscribe(tipos => {
       this.tipos = tipos;
       this.datosService.getCategorias$().subscribe(categorias => {

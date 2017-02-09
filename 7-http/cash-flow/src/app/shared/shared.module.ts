@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { HttpService } from './http.service';
 import { NgModule } from '@angular/core';
 import { UserStoreService } from './user-store.service';
@@ -13,7 +14,8 @@ import { UserStoreService } from './user-store.service';
 @NgModule({
   imports: [// Módulos necesarios
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [
     {

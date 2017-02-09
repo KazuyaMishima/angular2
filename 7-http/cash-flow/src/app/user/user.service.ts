@@ -19,8 +19,8 @@ export class UserService extends CrudService {
   /**
    * Sends credentials to de API and stores the result
    * */
-  public postSesion(credenciales) {
-    this.http
+  public postSesion$(credenciales) {
+    return this.http
       .post('pub/sesiones', JSON.stringify(credenciales))
       .map(r => {
         const token = r.json();
@@ -32,8 +32,8 @@ export class UserService extends CrudService {
   /**
    * Sends credentials to de API and stores the result
    * */
-  public postUser(credenciales) {
-    this.http
+  public postUser$(credenciales) {
+    return this.http
       .post('pub/usuarios', JSON.stringify(credenciales))
       .map(r => {
         const token = r.json();

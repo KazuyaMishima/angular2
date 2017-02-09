@@ -4,11 +4,11 @@ const colName = 'usuarios';
 const usuarios = [];
 const sesiones = [];
 
-var existeUsuario = usuario => usuarios.some(u  => u.email == usuario.email);
+var existeUsuario = usuario => usuarios.some(u => u.email == usuario.email);
 
-var crearUsuario = usuario =>  usuarios.push(usuario);
+var crearUsuario = usuario => usuarios.push(usuario);
 
-var esUsuarioValido = usuario  => usuarios.filter(u => u.email == usuario.email && u.password == usuario.password)[0];
+var esUsuarioValido = usuario => usuarios.filter(u => u.email == usuario.email && u.password == usuario.password)[0];
 
 
 /**
@@ -31,14 +31,19 @@ function usarSeguridad(app, ruta) {
     app.use(ruta, (req, res, next) => {
         // la validación de la sesión es en memoria
         // jwt descifra y valida un token
+        let sesion = null;
         const authorization = req.get('Authorization');
-        const sessionId = authorization.split(' ')[1];
-        const sesion = jwt.verify(sessionId);
+        const pieces = authorization.split(' ');
+        if (pieces && pieces.length > 0) {
+            const sessionId = authorization.split(' ')[1];
+            sesion = jwt.verify(sessionId);
+        }
         if (sesion) {
             req.usuario = sesion.email;
             next();
         } else {
-            res.status(401).send('Credencial inválida');
+            res.status(401)
+                .send('Credencial inválida');
         }
     })
 }

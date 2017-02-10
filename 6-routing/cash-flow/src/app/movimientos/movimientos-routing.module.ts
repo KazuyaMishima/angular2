@@ -1,11 +1,17 @@
 import { RouterModule, Routes } from '@angular/router';
 
-/** Importación de los componentes enrutables */
 import { EditorComponent } from './editor/editor.component';
 import { ListaComponent } from './lista/lista.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
+
+/** Importación de los componentes enrutables */
+
+
+
+
+
 
 /** Rutas que se manejan en este módulo
  * /movimientos
@@ -17,16 +23,16 @@ const routes: Routes = [
   {
     path: 'movimientos',
     component: MovimientosComponent, // tiene sus cosas y ... un router-oulet para sus hijos
-    children: [ // rutas hijas, se verán dentro del router-oulet componente contenedor
-      {
-        path: 'nuevo', // la ruta real es movimientos/nuevo
-        component: NuevoComponent
-      },
-      {
-        path: 'lista', // se ven dentro del componente MovimientosComponent
-        component: ListaComponent
-      }
-    ]
+    // children: [ // PRÁCTICA rutas hijas, se verán dentro del router-oulet componente contenedor
+    //   {
+    //     path: 'nuevo', // la ruta real es movimientos/nuevo
+    //     component: NuevoComponent // debe ser autosuficiente
+    //   },
+    //   {
+    //     path: 'lista', // se ven dentro del componente MovimientosComponent
+    //     component: ListaComponent
+    //   }
+    // ]
   },
   {
     path: 'movimientos/:id', // parámetro variable id

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'cf-nuevo',
   templateUrl: './nuevo.component.html',
-  styleUrls: ['./nuevo.component.css'] // ruta para hpjas de estilo propias
+  styleUrls: ['./nuevo.component.css'] // ruta para hojas de estilo propias
 })
 /**
  *  Componente para crear movimientos
@@ -18,9 +18,13 @@ export class NuevoComponent implements OnInit {
 
   constructor() { }
   /**
-   * Evento que se lanaza al incio del ciclo de vida del componente
+   * Evento que se lanza al incio del ciclo de vida del componente
    */
   ngOnInit() {
+    this.crearNuevoMovimiento();
+  }
+
+  private crearNuevoMovimiento() {
     this.movimiento = {
       importe: 0,
       tipo: this.tiposMovimiento[0].id

@@ -25,7 +25,7 @@ import { SharedModule } from './shared/shared.module'; // Módulo propio compart
 })
 /**
  * Módulo raiz de la aplicación
- * Destinado a importar la funcionalidad implentada en otros módulos
+ * Destinado a importar la funcionalidad implentadas en otros módulos
  */
 export class AppModule {
   // los módulos son clases contendoras 

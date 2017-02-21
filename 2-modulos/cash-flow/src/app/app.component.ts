@@ -12,7 +12,7 @@ export class AppComponent {
   // El componente raíz es una excepción. Debería llamarse RootComponent
   // Respecto al selector... si no se dice nada su prefijo por defecto es app
   // Luego normalmente encontrarás el par 'app-root' AppComponent
-
+  // Yo propongo cambiarle el nombre a cf-app para ser congruente con el resto
   // Propiedades del componente, visibles desde la plantilla
   title = 'Hola Mundo del Cash-Flow con Angular 2!';
 }

@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
  * */
 export class MovimientosComponent implements OnInit {
   /**
-   * Porpiedades visibles desde la plantilla
+   * Propiedades visibles desde la plantilla
    */
   private title = 'Alta y visualización de tus ingresos y gastos';
 

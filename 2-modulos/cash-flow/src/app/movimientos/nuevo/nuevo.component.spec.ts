@@ -1,9 +1,7 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { NuevoComponent } from './nuevo.component';
+import { SharedModule } from './../../shared/shared.module';
 
 describe('NuevoComponent', () => {
   let component: NuevoComponent;
@@ -11,6 +9,9 @@ describe('NuevoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        SharedModule
+      ],
       declarations: [ NuevoComponent ]
     })
     .compileComponents();

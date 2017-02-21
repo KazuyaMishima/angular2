@@ -1,10 +1,18 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import { MovimientosComponent } from './movimientos/movimientos/movimientos.component';
+import { MovimientosModule } from './movimientos/movimientos.module';
+import { NuevoComponent } from './movimientos/nuevo/nuevo.component';
+import { SharedModule } from './shared/shared.module';
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MovimientosModule,
+        SharedModule
+      ],
       declarations: [
         AppComponent
       ],

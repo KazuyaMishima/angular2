@@ -1,20 +1,30 @@
-import { TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { MovimientosComponent } from './movimientos.component';
+import { NuevoComponent } from './../nuevo/nuevo.component';
+import { SharedModule } from './../../shared/shared.module';
 
 describe('MovimientosComponent', () => {
-  beforeEach(() => {
+  let component: MovimientosComponent;
+  let fixture: ComponentFixture<MovimientosComponent>;
+
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        MovimientosComponent
+      imports: [
+        SharedModule
       ],
-    });
-    TestBed.compileComponents();
+      declarations: [ MovimientosComponent, NuevoComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(MovimientosComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(MovimientosComponent);
-    const componente = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });

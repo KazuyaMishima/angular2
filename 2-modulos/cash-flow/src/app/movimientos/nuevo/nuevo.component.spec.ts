@@ -5,9 +5,10 @@ import { DebugElement } from '@angular/core';
 import { NuevoComponent } from './nuevo.component';
 import { SharedModule } from './../../shared/shared.module';
 
+let component: NuevoComponent;
+let fixture: ComponentFixture<NuevoComponent>;
 describe('NuevoComponent', () => {
-  let component: NuevoComponent;
-  let fixture: ComponentFixture<NuevoComponent>;
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -16,11 +17,11 @@ describe('NuevoComponent', () => {
       ],
       declarations: [NuevoComponent]
     });
-    //initizalize(fixture, component);
+    initizalize();
 
-    fixture = TestBed.createComponent(NuevoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture = TestBed.createComponent(NuevoComponent);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -28,37 +29,37 @@ describe('NuevoComponent', () => {
   });
 
   it('should not render the main element', () => {
-    const main = queryByCss(fixture, 'main');
+    const main = queryByCss('main');
     expect(main).toBeFalsy();
   });
 
   it('should show main form on button mostrar click', () => {
-    const button: DebugElement =  queryByCss(fixture, 'button[name=mostrar]');
+    const button: DebugElement = queryByCss('button[name=mostrar]');
     button.nativeElement.click();
     fixture.detectChanges();
-    const h6: DebugElement =  queryByCss(fixture, 'main');
-    expect(h6).toBeTruthy();
+    const main: DebugElement = queryByCss('main');
+    expect(main).toBeTruthy();
   });
 
   it('should hide main form on second button ocultar click', () => {
-    let button: DebugElement =  queryByCss(fixture, 'button[name=mostrar]');
+    const button: DebugElement = queryByCss('button[name=mostrar]');
     button.nativeElement.click();
     fixture.detectChanges();
-    button =  queryByCss(fixture, 'button[name=ocultar]');
-    button.nativeElement.click();
+    const button2 = queryByCss('button[name=ocultar]');
+    button2.nativeElement.click();
     fixture.detectChanges();
-    const h6: DebugElement =  queryByCss(fixture, 'main');
-    expect(h6).toBeFalsy();
+    const main: DebugElement = queryByCss('main');
+    expect(main).toBeFalsy();
   });
 
 });
 
-function initizalize(fixture, component) {
+function initizalize() {
   fixture = TestBed.createComponent(NuevoComponent);
   component = fixture.componentInstance;
   fixture.detectChanges();
 }
 
-function queryByCss(fixture, css: string) {
+function queryByCss(css: string) {
   return fixture.debugElement.query(By.css(css));
 }

@@ -17,11 +17,10 @@ describe('NuevoComponent', () => {
       ],
       declarations: [NuevoComponent]
     });
-    initizalize();
 
-    // fixture = TestBed.createComponent(NuevoComponent);
-    // component = fixture.componentInstance;
-    // fixture.detectChanges();
+    fixture = TestBed.createComponent(NuevoComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -29,8 +28,9 @@ describe('NuevoComponent', () => {
   });
 
   it('should not render the main element', () => {
-    const main = queryByCss('main');
-    expect(main).toBeFalsy();
+    const mains = queryAllByCss('main');
+    expect(mains.length).toEqual(0);
+
   });
 
   it('should show main form on button mostrar click', () => {
@@ -54,12 +54,9 @@ describe('NuevoComponent', () => {
 
 });
 
-function initizalize() {
-  fixture = TestBed.createComponent(NuevoComponent);
-  component = fixture.componentInstance;
-  fixture.detectChanges();
-}
-
 function queryByCss(css: string) {
   return fixture.debugElement.query(By.css(css));
+}
+function queryAllByCss(css: string) {
+  return fixture.debugElement.queryAll(By.css(css));
 }

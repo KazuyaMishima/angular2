@@ -1,8 +1,15 @@
-/* tslint:disable:no-unused-variable */
-
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { MovimientosModule } from './movimientos/movimientos.module';
+import { SharedModule } from './shared/shared.module';
+
+/* tslint:disable:no-unused-variable */
+
+
+
+
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -10,6 +17,11 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        BrowserModule,
+        MovimientosModule,
+        SharedModule
+      ]
     });
     TestBed.compileComponents();
   });

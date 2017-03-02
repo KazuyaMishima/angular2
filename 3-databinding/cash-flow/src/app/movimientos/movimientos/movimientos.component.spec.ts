@@ -1,19 +1,27 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
 import { MovimientosComponent } from './movimientos.component';
+import { NuevoComponent } from './../nuevo/nuevo.component';
+import { SharedModule } from './../../shared/shared.module';
 
+/* tslint:disable:no-unused-variable */
 describe('MovimientosComponent', () => {
   let component: MovimientosComponent;
   let fixture: ComponentFixture<MovimientosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovimientosComponent ]
+      imports: [
+        SharedModule
+      ],
+      declarations: [
+        MovimientosComponent,
+        NuevoComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

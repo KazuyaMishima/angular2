@@ -16,7 +16,7 @@ import { Tipo } from './../modelos/tipo';
 export class NuevoComponent implements OnInit {
 
   /** Propiedad con el array para montar la lista de tipos de movimientos posibles */
-  private tiposMovimiento: Tipo[] = [];
+  public tiposMovimiento: Tipo[] = [];
   /**
    * Categorias filtradas para el tipo del movimiento actual
    */

@@ -3,13 +3,22 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { MovimientosModule } from './movimientos/movimientos.module'; // Módulo funcional propio
+import { NgModule } from '@angular/core';
+import { SharedModule } from './shared/shared.module'; // Módulo propio compartido
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [ // cosas declaradas en este módulo
+    AppComponent
+  ],
+  imports: [ // otros módulos que necesitamos para que este funcione
+    BrowserModule,
+    MovimientosModule,
+    SharedModule
+  ],
     });
     TestBed.compileComponents();
   });

@@ -15,7 +15,7 @@ export class NuevoComponent implements OnInit {
   private formularioVisible = false;
 
   /** Propiedad con el array para montar la lista de tipos de movimientos posibles */
-  private tiposMovimiento: any[] = [
+  public tiposMovimiento: any[] = [
     { id: 1, texto: 'Ingreso' },
     { id: 2, texto: 'Gasto' }];
   /**

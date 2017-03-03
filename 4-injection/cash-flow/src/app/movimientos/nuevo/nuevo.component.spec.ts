@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DatosService } from './../datos.service';
 import { FormsModule } from '@angular/forms';
+import { ListaComponent } from '../lista/lista.component';
 import { MovimientosComponent } from './../movimientos/movimientos.component';
 import { NuevoComponent } from './nuevo.component';
 import { SharedModule } from './../../shared/shared.module';
@@ -21,7 +22,8 @@ describe('NuevoComponent', () => {
       ],
       declarations: [
         MovimientosComponent,
-        NuevoComponent
+        NuevoComponent,
+        ListaComponent
       ],
       providers: [DatosService]
     });
@@ -36,8 +38,8 @@ describe('NuevoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should not have tiposMovimiento', () => {
-    expect(component.tiposMovimiento.length).toBe(0);
+  it('should have tiposMovimiento after init', () => {
+    expect(component.tiposMovimiento.length).toBe(2);
   });
 
   it('should render two radioButtons', () => {
@@ -58,11 +60,16 @@ describe('NuevoComponent', () => {
     expect(options[2].nativeElement.textContent).toContain('Intereses');
   });
 
-  it('should update the model on form submit', () => {
-    showForm();
-    const submitButton: HTMLElement = testing.queryElementByCss('button[name=guardar]');
-    submitButton.click();
-    expect(1).toBe(1);
+  it('should call alGuardarMovimiento on form submit', () => {
+    spyOn(component, 'alGuardarMovimiento').and.callThrough();
+    testing.queryElementByCss('button[name="guardar"]').click();
+    expect(component.alGuardarMovimiento).toHaveBeenCalled();
+  });
+
+  it('should call postMovimiento on form submit', () => {
+    spyOn(datosService, 'postMovimiento').and.callThrough();
+    testing.queryElementByCss('button[name="guardar"]').click();
+    expect(datosService.postMovimiento).toHaveBeenCalled();
   });
 });
 

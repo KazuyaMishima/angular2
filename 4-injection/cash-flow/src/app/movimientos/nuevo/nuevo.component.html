@@ -22,7 +22,7 @@
         <!--evento de cambio del modelo-->
         <input type="radio" name="tipo" [value]="tipo.id" [(ngModel)]="movimiento.tipo" (ngModelChange)="alCambiarTipo()">
         <!--interpolación del atributo class -->
-        <span class="{{tipo.texto | lowercase}}">{{ tipo.texto }}</span>
+        <span class="{{tipo.texto | lowercase}}" name="textoTipo" >{{ tipo.texto }}</span>
       </div>
     </div>
     <div class="row">
@@ -37,7 +37,7 @@
     </select>
     </div>
     <div class="row">
-      <button (click)="alGuardarMovimiento()">Guardar Movimiento</button>
+      <button name="guardar" (click)="alGuardarMovimiento()">Guardar Movimiento</button>
     </div>
   </form>
   <aside class="container">

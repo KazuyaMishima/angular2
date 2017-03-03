@@ -1,9 +1,23 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import {ListaComponent, ListaComponent} from './lista.component';
 
-import { ListaComponent } from './lista.component';
+import { By } from '@angular/platform-browser';
+import {DatosService} from '../datos.service';
+import { DebugElement } from '@angular/core';
+import { MovimientosComponent } from './../movimientos/movimientos.component';
+import { NuevoComponent } from './../nuevo/nuevo.component';
+import { SharedModule } from './../../shared/shared.module';
+
+/* tslint:disable:no-unused-variable */
+
+
+
+
+
+
+
+
+
 
 describe('ListaComponent', () => {
   let component: ListaComponent;
@@ -11,7 +25,15 @@ describe('ListaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListaComponent ]
+      imports: [
+        SharedModule
+      ],
+      declarations: [
+        MovimientosComponent,
+        NuevoComponent,
+        ListaComponent
+      ],
+      providers: [DatosService]
     })
     .compileComponents();
   }));

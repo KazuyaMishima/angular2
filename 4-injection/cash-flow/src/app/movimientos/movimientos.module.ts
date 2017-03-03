@@ -1,13 +1,12 @@
 import { DatosService } from './datos.service';
+import { ListaComponent } from './lista/lista.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { SharedModule } from './../shared/shared.module';
-import { ListaComponent } from './lista/lista.component';
-/**
- * Una aplicación se compoen de unos o más módulos funcionales
- */
-@NgModule({
+
+export { ListaComponent, MovimientosComponent, NuevoComponent, DatosService  }  ;
+export const moduleConfig = {
   imports: [ // dependencias de otros módulos
     SharedModule
   ],
@@ -22,5 +21,9 @@ import { ListaComponent } from './lista/lista.component';
   providers: [ // registro del servicio de datos como un proveedor inyectable
     DatosService
   ]
-})
+};
+/**
+ * Una aplicación se compoen de unos o más módulos funcionales
+ */
+@NgModule(moduleConfig)
 export class MovimientosModule { }

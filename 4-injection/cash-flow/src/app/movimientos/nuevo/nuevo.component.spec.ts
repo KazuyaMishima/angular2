@@ -1,11 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DatosService, ListaComponent, MovimientosComponent, NuevoComponent, moduleConfig } from './../movimientos.module';
 
 import { By } from '@angular/platform-browser';
-import { DatosService } from './../datos.service';
 import { FormsModule } from '@angular/forms';
-import { ListaComponent } from '../lista/lista.component';
-import { MovimientosComponent } from './../movimientos/movimientos.component';
-import { NuevoComponent } from './nuevo.component';
 import { SharedModule } from './../../shared/shared.module';
 import { Testing } from 'app/shared/testing';
 
@@ -16,17 +13,7 @@ let datosService: DatosService;
 
 describe('NuevoComponent', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SharedModule
-      ],
-      declarations: [
-        MovimientosComponent,
-        NuevoComponent,
-        ListaComponent
-      ],
-      providers: [DatosService]
-    });
+    TestBed.configureTestingModule(moduleConfig);
     fixture = TestBed.createComponent(NuevoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

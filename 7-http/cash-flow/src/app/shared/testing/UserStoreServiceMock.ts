@@ -1,4 +1,4 @@
-import { UserData } from './../shared/model/data.class';
+import { UserData } from './../model/data.class';
 
 export class UserStoreServiceMock {
 
@@ -11,7 +11,7 @@ export class UserStoreServiceMock {
   }
 
   public getProfile(): UserData {
-    let userData: UserData = new UserData();
+    const userData: UserData = new UserData();
     userData.user = 'testUser';
     userData.token = 'eyJhbGciOiJIUzI1NiIsInR9';
     userData.isLogged = false;

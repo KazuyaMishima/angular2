@@ -9,12 +9,7 @@
     <!--(eventos)="para recibir información de componentes hijos @Output"-->
 
 
-    <cf-nuevo
-      [tipos]="tipos"
-      [categorias]="categorias"
-      [movimiento]="movimiento"
-      (guardarMovimiento)="guardarMovimiento()"
-      (cambiarTipo)="cambiarTipo()">
+    <cf-nuevo [tipos]="tipos" [categorias]="categorias" [movimiento]="movimiento" (guardarMovimiento)="guardarMovimiento()" (cambiarTipo)="cambiarTipo()">
     </cf-nuevo>
     <hr/>
     <cf-lista [movimientos]="movimientos">

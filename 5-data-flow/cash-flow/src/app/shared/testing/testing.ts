@@ -1,14 +1,15 @@
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 import { element } from 'protractor';
 
 export class Testing {
   constructor(private fixture) { }
 
-  queryElementByCss(css: string) {
+  queryElementByCss(css: string): HTMLElement {
     return this.fixture.debugElement.query(By.css(css)).nativeElement;
   }
 
-  queryAllByCss(css: string) {
+  queryAllByCss(css: string): DebugElement[] {
     return this.fixture.debugElement.queryAll(By.css(css));
   }
 

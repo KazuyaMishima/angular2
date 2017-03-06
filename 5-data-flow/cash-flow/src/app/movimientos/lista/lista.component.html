@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let movimiento of movimientos">
+          <tr *ngFor="let movimiento of movimientos" name="filaMovimiento">
             <td>{{ movimiento.fecha | date }}</td>
             <td>{{ movimiento.tipo }}</td>
             <td>{{ movimiento.categoria }}</td>

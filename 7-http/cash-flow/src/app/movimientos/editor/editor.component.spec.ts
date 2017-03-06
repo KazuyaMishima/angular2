@@ -1,23 +1,27 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import * as movimientosIndex from './../index';
+
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EditorComponent } from './editor.component';
+/* tslint:disable:no-unused-variable */
+
+
+
+
 
 describe('EditorComponent', () => {
-  let component: EditorComponent;
-  let fixture: ComponentFixture<EditorComponent>;
+  let component: movimientosIndex.EditorComponent;
+  let fixture: ComponentFixture<movimientosIndex.EditorComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EditorComponent ]
-    })
+    TestBed.configureTestingModule(movimientosIndex.movimientosTestConfig)
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditorComponent);
+    fixture = TestBed.createComponent(movimientosIndex.EditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

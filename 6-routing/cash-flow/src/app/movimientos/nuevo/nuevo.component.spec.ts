@@ -8,13 +8,6 @@ import { Movimiento } from './../modelos/movimiento';
 
 /* tslint:disable:no-unused-variable */
 
-
-
-
-
-
-
-
 describe('NuevoComponent', () => {
   let component: movimientosIndex.NuevoComponent;
   let fixture: ComponentFixture<movimientosIndex.NuevoComponent>;

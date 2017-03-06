@@ -32,7 +32,7 @@ export class NuevoComponent implements OnInit {
   // es un componente tonto ()
   constructor() { /** VACÍO */}
 
-  ngOnInit() {   }
+  ngOnInit() {  }
   /**
    * Recalcula las categorias válidas para el tipo del movimiento actual
    */

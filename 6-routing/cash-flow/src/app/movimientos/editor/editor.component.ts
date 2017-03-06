@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-/** Servicio para acceder a la ruta activa */
 import { ActivatedRoute } from '@angular/router';
 import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
+
+/** Servicio para acceder a la ruta activa */
+
+
+
 
 @Component({
   selector: 'cf-editor',
@@ -11,7 +15,7 @@ import { Movimiento } from './../modelos/movimiento';
   styles: []
 })
 export class EditorComponent implements OnInit {
-  movimiento: Movimiento;
+  movimiento: Movimiento = new Movimiento(new Date, 0, 0, 0);
 
   constructor(private route: ActivatedRoute, private datosService: DatosService) { }
 
@@ -19,8 +23,10 @@ export class EditorComponent implements OnInit {
     // subscripción al observable params
     this.route.params
       .subscribe(params => {
-        const _id = params['id'].toString(); // recpeción del parámetro
-        this.movimiento = this.datosService.getMovimientoBy_Id(_id); // consulta al servicio
+        const _id = <string>params['id']; // recepción del parámetro
+        if (_id) {
+          this.movimiento = this.datosService.getMovimientoBy_Id(_id); // consulta al servicio
+        }
       });
   }
 

@@ -1,11 +1,15 @@
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Categoria } from './modelos/categoria';
 import { Injectable } from '@angular/core';
 import { Movimiento } from './modelos/movimiento';
-// permite la suscripción a cambios de un stream
 import { Observable } from 'rxjs/Observable';
-// se comporta como un observable y además permite la emisión de datos hacia un observable
-import { Subject } from 'rxjs/Subject';
 import { Tipo } from './modelos/tipo';
+
+// permite la suscripción a cambios de un stream
+
+// se comporta como un observable y además permite la emisión de datos hacia un observable
+
+
 
 /**
  * Un servicio es una clase inyectable en otro servicio o componente
@@ -33,7 +37,7 @@ export class DatosService {
   private movimientos: Movimiento[] = [];
 
   /** Emisor de eventos relacionados con el almacén de movimientos */
-  private movimientos$: Subject<Movimiento[]> = new Subject<Movimiento[]>();
+  private movimientos$: BehaviorSubject<Movimiento[]> = new BehaviorSubject<Movimiento[]>(this.movimientos);
 
   constructor() { }
 

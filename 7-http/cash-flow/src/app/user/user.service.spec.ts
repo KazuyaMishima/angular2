@@ -45,7 +45,7 @@ describe('UserService', () => {
     credentials = {
       email: 'testUser',
       password: 'testPassword'
-    }
+    };
     fakeToken = 'eyJhbGciOiJIkpXVCJ9';
   });
 

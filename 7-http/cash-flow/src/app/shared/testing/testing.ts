@@ -1,5 +1,6 @@
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { ResponseOptions } from '@angular/http';
 
 export class Testing {
   constructor(private fixture) { }
@@ -16,5 +17,13 @@ export class Testing {
 
   getModelValue(element: HTMLElement) {
     return element.getAttribute('ng-reflect-model');
+  }
+
+  getMockResponse(mockBackend, fakeData) {
+    mockBackend.connections.subscribe(connection => {
+      connection.mockRespond(new Response(new ResponseOptions({
+        body: JSON.stringify(fakeData)
+      })));
+    });
   }
 }

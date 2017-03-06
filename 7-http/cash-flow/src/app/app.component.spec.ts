@@ -51,7 +51,7 @@ describe('AppComponent', () => {
     const aTags: DebugElement[] = testing.queryAllByCss('a');
     aTags[0].nativeElement.click();
     fixture.detectChanges();
-    const routerOutletComponent: HTMLElement = testing.queryElementByCss('cf-casa');
+    const routerOutletComponent: HTMLElement = testing.queryElementByCss('router-outlet');
     expect(routerOutletComponent).toBeTruthy();
   });
 });

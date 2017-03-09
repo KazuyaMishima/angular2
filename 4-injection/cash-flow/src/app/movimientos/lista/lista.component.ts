@@ -14,6 +14,7 @@ export class ListaComponent implements OnInit {
   // los observables se sufijan con $ 
   /** Observable del almacén de movimientos */
   movimientos$: Observable<Movimiento[]>;
+  movimientos: Movimiento[];
 
   /** Este componente depende del objeto DatosService */
   constructor(private datosService: DatosService) { }
@@ -22,7 +23,7 @@ export class ListaComponent implements OnInit {
     // No se necesita suscripción cuando se usa el pipe async
     this.movimientos$ = this.datosService.getMovimientos$();
     // Pero si se requiere, entoces se debe suscribir al observable
-    this.movimientos$.subscribe(datos => console.log('Dato recibido: ', datos));
+    this.movimientos$.subscribe(datos => this.movimientos = datos );
   }
 
 }

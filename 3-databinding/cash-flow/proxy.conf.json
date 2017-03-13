@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "http://onepulse-ng2.azurewebsites.net",
+    "secure": false
+  }
+}

@@ -39,6 +39,7 @@ export class UserService extends CrudService {
         const token = r.json();
         this.userStoreService.logIn({email: credenciales.email }, token);
         this.router.navigate(['']);
+        return token;
       });
   }
 

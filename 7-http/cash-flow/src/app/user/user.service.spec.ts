@@ -58,7 +58,9 @@ describe('UserService', () => {
 
     spyOn(routerMock, 'navigate').and.callThrough();
     spyOn(userStoreServiceMock, 'logIn').and.callThrough();
-    userService.postUser$(credentials).subscribe();
+    userService.postUser$(credentials).subscribe(token => {
+       expect(token).toBe(fakeToken);
+    });
     expect(routerMock.navigate).toHaveBeenCalledWith(['']);
     expect(userStoreServiceMock.logIn).toHaveBeenCalled();
   });

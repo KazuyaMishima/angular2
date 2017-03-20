@@ -1,12 +1,20 @@
+import 'rxjs/add/observable/of';
+
+import { ActivatedRoute } from '@angular/router';
+import { ActivatedRouteMock } from './../shared/testing/activated-route-mock';
 import { DatosService } from './datos.service';
 import { EditorComponent } from './editor/editor.component';
 import { ListaComponent } from './lista/lista.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { MovimientosRoutingModule } from './movimientos-routing.module';
 import { NuevoComponent } from './nuevo/nuevo.component';
+import { Observable } from 'rxjs/Observable';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from './../shared/shared.module';
 
+export { Observable } from 'rxjs/Observable';
+export { ActivatedRoute } from '@angular/router';
+export { ActivatedRouteMock } from './../shared/testing/activated-route-mock';
 export { DatosService } from './datos.service';
 export { EditorComponent } from './editor/editor.component';
 export { ListaComponent } from './lista/lista.component';
@@ -51,5 +59,25 @@ export const movimientosTestConfig = {
   ],
   providers: [ // registro del servicio de datos como un proveedor inyectable
     DatosService
+  ]
+}
+
+export const movimientosTestActivatedRouteConfig = {
+  imports: [ 
+    SharedModule,
+    RouterTestingModule 
+  ],
+  declarations: [ 
+    EditorComponent,
+    MovimientosComponent,
+    NuevoComponent,
+    ListaComponent
+  ],
+  exports: [ 
+
+  ],
+  providers: [ 
+    DatosService,
+    { provide: ActivatedRoute, useValue: new ActivatedRouteMock(Observable.of({ id: 1 })) }
   ]
 }

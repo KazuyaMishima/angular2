@@ -6,6 +6,7 @@ import { MovimientosModule } from './movimientos/movimientos.module'; // Módulo
 import { NgModule } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from './shared/shared.module'; // Módulo propio compartido
+import { UserModule } from './user/user.module';
 
 export { AppComponent } from './app.component';
 export { AppRoutingModule } from './app-routing.module';
@@ -33,7 +34,8 @@ export const appConfig = {
     BrowserModule,
     CasaModule,
     MovimientosModule,
-    SharedModule
+    SharedModule,
+    UserModule
   ],
   bootstrap: [ // componente raíz para el arranque
     AppComponent
@@ -48,7 +50,8 @@ export const appTestConfig = {
     RouterTestingModule, // el módulo de rutas ya configurado
     BrowserModule,
     MovimientosModule,
-    SharedModule
+    SharedModule,
+    UserModule
   ],
   bootstrap: [ // componente raíz para el arranque
     AppComponent

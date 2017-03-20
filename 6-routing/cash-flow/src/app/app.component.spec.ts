@@ -43,15 +43,17 @@ describe('AppComponent', () => {
   });
 
   it('should render routerOutlet', () => {
-    const routerOutlet: HTMLElement = testing.queryElementByCss('router-outlet');
+    const routerOutlet = testing.queryElementByCss('router-outlet');
     expect(routerOutlet).toBeTruthy();
   });
 
-  it('should fill routerOutlet when routerLink clicked', () => {
+  it('should fill routerOutlet when routerLink clicked', async(() => {
     const aTags: DebugElement[] = testing.queryAllByCss('a');
     aTags[1].nativeElement.click();
     fixture.detectChanges();
-    const routerOutletComponent: HTMLElement = testing.queryElementByCss('cf-movimientos');
-    expect(routerOutletComponent).toBeTruthy();
-  });
+    fixture.whenStable().then(() => {
+      const routerOutletComponent = testing.queryElementByCss('cf-movimientos');
+      expect(routerOutletComponent).toBeTruthy();
+    })
+  }));
 });

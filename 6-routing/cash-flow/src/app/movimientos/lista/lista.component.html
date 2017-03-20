@@ -21,7 +21,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let movimiento of movimientos">
-              <!--ruta paramética-->
+              <!--ruta paramétrica-->
               <td> <a [routerLink]="['/movimientos', movimiento._id]">{{ movimiento._id }}</a> </td>
               <td>{{ movimiento.fecha | date }}</td>
               <td>{{ movimiento.fecha | date }}</td>

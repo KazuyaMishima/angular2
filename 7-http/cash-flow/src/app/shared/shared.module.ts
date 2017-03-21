@@ -19,10 +19,10 @@ import { UserStoreService } from './user-store.service';
   ],
   providers: [
     {
-      provide: Http, // replaces the framework service
-      useClass: HttpService // with our custom extended class
+      provide: Http, // remplaza el servicio original de angular
+      useClass: HttpService // con nuestra extensión personalizada
     },
-    UserStoreService // Service to persist local user data
+    UserStoreService
   ],
   exports: [// Lo que aquí se exporte se importará en los módulos funcionales
     CommonModule,

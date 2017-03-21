@@ -1,5 +1,5 @@
 /**
- * Model class to hold app data
+ * Modelo para un usuario
  */
 export class UserData {
   user?: string;

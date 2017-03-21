@@ -6,55 +6,47 @@ import { Router } from '@angular/router';
 
 @Injectable()
 /**
- * A base service to perform CRUD operations against a REST API
- * Should be extended
+ * Servicio genérico para operaciones CRUD simples
  * */
 export class CrudService {
-  public apiEndPoint = '';
+    public apiEndPoint = '';
 
-  constructor(protected http: Http) { }
+    constructor(protected http: Http) { }
 
-  /** Reads the full list of items */
-  get(): Observable<any> {
-      return this.http
-          .get(this.apiEndPoint);
-  }
-
-  /** Reads a list of items that matches a search term */
-  getBySearchTerm(searchTerm: string): Observable<any> {
-      // Not restfull at the moment
-      return this.http
-          .get(this.apiEndPoint + '/list/search?typedText=' + searchTerm);
-  }
-
-  /** Reads an item by its primary key */
-  getById(id: string): Observable<any> {
-      return this.http
-          .get(this.apiEndPoint + '/' + id);
-  }
-
-  /** Saves or creates a new item */
-  save(item: any): Observable<any> {
-    if (item.id) {
-      return this.put(item.id, item);
-    } else {
-      return this.post(item);
+    /** Reads the full list of items */
+    get(): Observable<any> {
+        return this.http
+            .get(this.apiEndPoint);
     }
-  };
-  /** Create */
-  post(item: any): Observable<any> {
-      return this.http
-          .post(this.apiEndPoint, JSON.stringify(item));
-  };
-  /** Update */
-  put(id: string, item: any): Observable<any> {
-      return this.http
-          .post(this.apiEndPoint + '/' + id, JSON.stringify(item));
-  };
 
-  /** Delete */
-  delete(id: string): Observable<any> {
-      return this.http
-          .delete(this.apiEndPoint + '/' + id);
-  };
+    /** Reads an item by its primary key */
+    getById(id: string): Observable<any> {
+        return this.http
+            .get(this.apiEndPoint + '/' + id);
+    }
+
+    /** Update or create a new item */
+    save(item: any): Observable<any> {
+        if (item.id) {
+            return this.put(item.id, item);
+        } else {
+            return this.post(item);
+        }
+    };
+    /** Create */
+    post(item: any): Observable<any> {
+        return this.http
+            .post(this.apiEndPoint, JSON.stringify(item));
+    };
+    /** Update */
+    put(id: string, item: any): Observable<any> {
+        return this.http
+            .post(this.apiEndPoint + '/' + id, JSON.stringify(item));
+    };
+
+    /** Delete */
+    delete(id: string): Observable<any> {
+        return this.http
+            .delete(this.apiEndPoint + '/' + id);
+    };
 }

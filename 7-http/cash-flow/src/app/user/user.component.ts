@@ -7,9 +7,6 @@ import { UserService } from './user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-/**
- * shows user profile
- */
 export class UserComponent implements OnInit {
   private user;
 

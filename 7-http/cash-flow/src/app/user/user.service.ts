@@ -7,7 +7,7 @@ import { UserStoreService } from './../shared/user-store.service';
 
 @Injectable()
 /**
- * CRUD and custom logic related to users
+ * CRUD con lógica específica apara usuarios y sesiones
  * */
 export class UserService extends CrudService {
 
@@ -17,7 +17,7 @@ export class UserService extends CrudService {
   }
 
   /**
-   * Sends credentials to de API and stores the result
+   * Enviar credenciales y guardar token
    * */
   public postSesion$(credenciales) {
     return this.http
@@ -30,7 +30,7 @@ export class UserService extends CrudService {
   }
 
   /**
-   * Sends credentials to de API and stores the result
+   * Enviar credenciales y guardar token
    * */
   public postUser$(credenciales) {
     return this.http
@@ -44,7 +44,7 @@ export class UserService extends CrudService {
   }
 
   /**
-   * Refresh the current user profile
+   * Obtener el usuario actual
    * */
   public getProfile(): UserData {
     return this.userStoreService.getProfile();

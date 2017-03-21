@@ -21,6 +21,6 @@ import { UserService } from './user.service';
   ]
 })
 /**
- * Module to hold user related comoponents and services
+ * Modulo para componentes y servicios de gestión de usuarios
  */
 export class UserModule { }

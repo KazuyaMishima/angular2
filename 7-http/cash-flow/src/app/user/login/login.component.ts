@@ -8,13 +8,11 @@ import { UserService } from './../user.service';
   styleUrls: ['./login.component.css']
 })
 /**
- * Ask user for credentials
- * Send to a service and logs in the user
+ * Preguntar las credenciales al usuario
+ * Verificar contra el servidor
  * */
 export class LoginComponent implements OnInit {
-  /**
-   * Some questions to indentify the user
-   */
+
   private credentials = {
     email: '',
     password: ''
@@ -24,15 +22,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  /**
-   * the user clicks the register in button
-   */
+
   alRegistrar() {
     this.userService.postUser$(this.credentials).subscribe();
   }
-  /**
-   * the user clicks the log in button
-   */
+
   alEntrar() {
     this.userService.postSesion$(this.credentials).subscribe();
   }

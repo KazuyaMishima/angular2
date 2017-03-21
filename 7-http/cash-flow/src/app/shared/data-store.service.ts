@@ -25,9 +25,9 @@ export abstract class DataStoreService {
     this.emitChange();
   }
 
-  private saveData(data){
+  private saveData(data) {
     this.data = data;
-    if (this.dataKey) {
+    if (this.localStoreKey) {
       localStorage.setItem(this.localStoreKey, JSON.stringify(this.data));
     }
   }
@@ -43,7 +43,7 @@ export abstract class DataStoreService {
     this.loadData();
     return this.data;
   }
-  private loadData(){
+  private loadData() {
     if (this.localStoreKey) {
       let localData = localStorage.getItem(this.localStoreKey);
       if (localData) {

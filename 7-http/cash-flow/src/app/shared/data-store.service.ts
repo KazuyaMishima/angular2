@@ -2,9 +2,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
 /**
- * A service to hold Application wide data
- * Performs operations against a local store
- * Comunicates with the app trought Observabales
+ * Servicio para mantener el estado de la aplicacion
+ * Puede guardar el estado en el localstorage
+ * Se comunica con la app mediante Observabales
  * */
 export abstract class DataStoreService {
 
@@ -12,39 +12,43 @@ export abstract class DataStoreService {
   private dataSubject: BehaviorSubject<any>;
 
 
-  constructor(protected dataKey: string, protected data: any) {
+  constructor(protected localStoreKey: string, protected data: any) {
     this.getData();
     this.dataSubject = new BehaviorSubject(this.data);
-    this.emit();
+    this.emitChange();
   }
-  /** An onservable to get notified about changes */
+  /** Un observable al que suscribirse para recibir cambios */
   public getDataObservable = (): Observable<any> => this.dataSubject.asObservable();
 
-  /**
-   * Saves appdata to localstorage
-   * and notifies it
-   */
   protected setData(data) {
+    this.saveData(data);
+    this.emitChange();
+  }
+
+  private saveData(data){
     this.data = data;
     if (this.dataKey) {
-      localStorage.setItem(this.dataKey, JSON.stringify(this.data));
+      localStorage.setItem(this.localStoreKey, JSON.stringify(this.data));
     }
-    this.emit();
   }
-  /** Notifies a change in data */
-  private emit() {
+
+  private emitChange() {
+    /** Notifies el siguente estado de la aplicación */
     this.dataSubject.next(this.data);
   }
   /**
-   * Gets data from local sotorage
+   * Obtiene el estado actual
    */
   protected getData(): any {
-    if (this.dataKey) {
-      let localData = localStorage.getItem(this.dataKey);
+    this.loadData();
+    return this.data;
+  }
+  private loadData(){
+    if (this.localStoreKey) {
+      let localData = localStorage.getItem(this.localStoreKey);
       if (localData) {
         this.data = JSON.parse(localData);
       }
     }
-    return this.data;
   }
 }

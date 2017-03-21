@@ -13,14 +13,12 @@ import { UserStoreService } from './user-store.service';
 
 @Injectable()
 /**
- * A custom extension to replace the framework CrudService
- * Allows the configuration of headers for every Request
- * Catches all responses given the oportunity to run common logic
+ * Una extensión personalizada para reemplazar el servicio http original
+ * Permite la configuración de cabeceras en cadda llamada
+ * Captura todas las respuestas dando oportunidad a procesos centralizados
  * */
 export class HttpService extends Http {
-  /** should come from environmet configuration files */
   public apiProxyUrl = 'http://localhost:3030/api/';
-  // public apiUrl: string = 'api/';
   private authorization = '';
 
   constructor(
@@ -41,7 +39,11 @@ export class HttpService extends Http {
    * If it is astring it should have options
    * */
   request(request: string | Request, options: RequestOptionsArgs = { headers: new Headers() }): Observable<Response> {
-    // configures request url and headers
+    this.configureRequest(request, options);
+    return this.interceptResponse(request, options);
+  }
+
+  private configureRequest(request: string | Request, options: RequestOptionsArgs) {
     if (typeof request === 'string') {
       request = this.getProxyUrl(request);
       this.setHeaders(options);
@@ -49,18 +51,15 @@ export class HttpService extends Http {
       request['url'] = this.getProxyUrl(request['url']);
       this.setHeaders(request);
     }
-    // catch any errors receibed
+  }
+  private interceptResponse(request: string | Request, options: RequestOptionsArgs): Observable<Response> {
     const observableRequest = super
       .request(request, options)
       .catch(this.onCatch())
       .finally(this.onFinally());
-    // the request is an observable, after config it must continue
     return observableRequest;
   }
 
-  /**
-   * Transforms the url to call de cors proxy
-   */
   private getProxyUrl(currentUrl) {
     if (!currentUrl.includes('/assets/')) {
       return this.apiProxyUrl + currentUrl;
@@ -69,28 +68,23 @@ export class HttpService extends Http {
     }
   }
 
-  /**
-   * Interceptor to write header info in every request
-   * */
   private setHeaders(objectToSetHeadersTo: Request | RequestOptionsArgs) {
     const headers = objectToSetHeadersTo.headers;
     headers.set('Content-Type', 'application/json');
     headers.set('Authorization', this.authorization);
   }
 
-  /**
-   * Interceptor for any kind of error receibed form the API
-   * */
   private onCatch() {
     return (res: Response) => {
-      // Security errors
-      if (res.status === 401 || res.status === 403 || res.status === 0) {
-        // ask user for credentials
+      if (this.esErrorDeSeguridad(res)) {
         this.router.navigate(['user/login']);
       }
-      // To Do: other common actions to http errors
       return Observable.throw(res);
     };
+  }
+
+  private esErrorDeSeguridad(res){
+    return res.status === 401 || res.status === 403 || res.status === 419;
   }
 
   private onFinally() {

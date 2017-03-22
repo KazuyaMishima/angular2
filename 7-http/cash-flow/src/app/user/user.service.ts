@@ -21,10 +21,10 @@ export class UserService extends CrudService {
    * */
   public postSesion$(credenciales) {
     return this.http
-      .post('pub/sesiones', JSON.stringify(credenciales))
+      .post('pub/sesiones', credenciales)
       .map(r => {
         const token = r.json();
-        this.userStoreService.logIn({email: credenciales.email }, token);
+        this.userStoreService.logIn({ email: credenciales.email }, token);
         this.router.navigate(['']);
       });
   }
@@ -34,10 +34,10 @@ export class UserService extends CrudService {
    * */
   public postUser$(credenciales) {
     return this.http
-      .post('pub/usuarios', JSON.stringify(credenciales))
+      .post('pub/usuarios', credenciales)
       .map(r => {
         const token = r.json();
-        this.userStoreService.logIn({email: credenciales.email }, token);
+        this.userStoreService.logIn({ email: credenciales.email }, token);
         this.router.navigate(['']);
         return token;
       });

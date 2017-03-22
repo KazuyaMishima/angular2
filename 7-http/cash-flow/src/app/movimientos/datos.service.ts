@@ -62,19 +62,13 @@ export class DatosService {
 
   /** Guarda un movimiento en el almacén, y notifica ese evento */
   postMovimiento$(movimiento: Movimiento) {
-    const body = this.getBody(movimiento);
     if (movimiento._id && movimiento._id !== '_') {
       return this.http
-        .put(`priv/movimientos/${movimiento._id}`, body);
+        .put(`priv/movimientos/${movimiento._id}`, movimiento);
     } else {
       return this.http
-        .post(`priv/movimientos`, body);
+        .post(`priv/movimientos`, movimiento);
     }
-  }
-
-  getBody(movimiento) {
-    const movimientoClone: Movimiento = Object.assign({}, movimiento);
-    return JSON.stringify(movimientoClone);
   }
 
 

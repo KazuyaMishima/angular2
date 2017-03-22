@@ -70,7 +70,6 @@ export class HttpService extends Http {
 
   private setHeaders(objectToSetHeadersTo: Request | RequestOptionsArgs) {
     const headers = objectToSetHeadersTo.headers;
-    headers.set('Content-Type', 'application/json');
     headers.set('Authorization', this.authorization);
   }
 
@@ -83,7 +82,7 @@ export class HttpService extends Http {
     };
   }
 
-  private esErrorDeSeguridad(res){
+  private esErrorDeSeguridad(res) {
     return res.status === 401 || res.status === 403 || res.status === 419;
   }
 

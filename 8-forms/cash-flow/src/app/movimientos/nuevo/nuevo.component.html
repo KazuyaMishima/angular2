@@ -5,7 +5,8 @@
   <form (ngSubmit)="alGuardarMovimiento(nuevoForm)"
         [formGroup]="nuevoForm"
         novalidate>
-    <div class="row">
+    <div name="fecha-grupo"
+         class="row">
       <label for="fecha"
              class="column"
              [ngClass]="{'text-error': formUtils.noEsValido('fecha') }">Fecha: </label>
@@ -15,13 +16,12 @@
              class="column"
              [ngClass]="{'input-error': formUtils.noEsValido('fecha') }"
              formControlName="fecha">
+      <cf-validator [form]="nuevoForm"
+                    campo="fecha"
+                    error="betweenTwoDates"
+                    mensaje="La fecha debe de estar comprendida entre hoy y +- 5días">
+      </cf-validator>
     </div>
-    <cf-validator
-      [form]="nuevoForm"
-      campo="fecha"
-      error="betweenTwoDates"
-      mensaje="La fecha debe de estar comprendida entre hoy y +- 5días">
-    </cf-validator>
     <div class="row">
       <label for="importe"
              class="column"
@@ -32,17 +32,15 @@
              [ngClass]="{'input-error': formUtils.noEsValido('importe') }"
              formControlName="importe">
     </div>
-    <cf-validator
-      [form]="nuevoForm"
-      campo="importe"
-      error="required"
-      mensaje="El campo es obligatorio">
+    <cf-validator [form]="nuevoForm"
+                  campo="importe"
+                  error="required"
+                  mensaje="El campo es obligatorio">
     </cf-validator>
-    <cf-validator
-      [form]="nuevoForm"
-      campo="importe"
-      error="positive"
-      mensaje="El importe debe ser positivo">
+    <cf-validator [form]="nuevoForm"
+                  campo="importe"
+                  error="positive"
+                  mensaje="El importe debe ser positivo">
     </cf-validator>
     <div class="row">
       <label for="tipo"
@@ -71,15 +69,14 @@
             </option>
       </select>
     </div>
-    <cf-validator
-      [form]="nuevoForm"
-      campo="categoria"
-      error="required"
-      mensaje="El campo es obligatorio">
+    <cf-validator [form]="nuevoForm"
+                  campo="categoria"
+                  error="required"
+                  mensaje="El campo es obligatorio">
     </cf-validator>
     <div class="row">
       <button type="submit"
-        [disabled]="!nuevoForm.valid">Crear movimiento</button>
+              [disabled]="!nuevoForm.valid">Crear movimiento</button>
     </div>
   </form>
   <aside class="container">

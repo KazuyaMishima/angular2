@@ -1,17 +1,28 @@
-import { Contacto } from './../contacto/modelos/contacto';
-import { Total } from './modelos/total';
-// Operador de transformación
-
 import 'rxjs/add/operator/map';
 
 import { Http, Response } from '@angular/http';
 
 import { Categoria } from './modelos/categoria';
 import { Injectable } from '@angular/core';
+import { Mensaje } from './../contacto/modelos/contacto';
 import { Movimiento } from './modelos/movimiento';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Tipo } from './modelos/tipo';
+import { Total } from './modelos/total';
+
+// Operador de transformación
+
+
+
+
+
+
+
+
+
+
+
 
 // permite la suscripción a cambios de un stream
 
@@ -97,9 +108,9 @@ export class DatosService {
       .map(r => r.json());
   }
 
-  saveContacto$(contacto: Contacto): Observable<Contacto> {
+  saveMensaje$(mensaje: Mensaje): Observable<Mensaje> {
     return this.http
-      .post('priv/contactos/', contacto)
+      .post('priv/mensajes/', mensaje)
       .map(r => r.json());
   }
 

@@ -1,8 +1,9 @@
-import { FormUtils } from './../../shared/form-utils';
-import { DatosService } from './../../movimientos/datos.service';
-import { HttpService } from './../../shared/http.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { DatosService } from './../../movimientos/datos.service';
+import { FormUtils } from './../../shared/form-utils';
+import { HttpService } from './../../shared/http.service';
 
 @Component({
   selector: 'cf-contacto',
@@ -28,8 +29,8 @@ export class ContactoComponent implements OnInit {
     });
   };
 
-  onSubmit({value, valid}) {
-    this.datosService.saveContacto$(value);
+  onSubmit({ value, valid }) {
+    this.datosService.saveMensaje$(value);
   }
 
 }

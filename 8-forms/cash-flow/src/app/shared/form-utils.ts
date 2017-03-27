@@ -11,6 +11,10 @@ export class FormUtils {
     return (this.tieneCambios(campo) && this.getCampo(campo).errors);
   }
 
+  tieneError(campo, error) {
+    return (this.tieneErrores(campo) && this.getCampo(campo).errors[error]);
+  }
+
   noEsValido(campo) {
     return (this.tieneCambios(campo) && !this.getCampo(campo).valid);
   }

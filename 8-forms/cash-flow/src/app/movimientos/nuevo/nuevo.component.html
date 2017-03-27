@@ -5,23 +5,25 @@
   <form (ngSubmit)="alGuardarMovimiento(nuevoForm)"
         [formGroup]="nuevoForm"
         novalidate>
-    <div name="fecha-grupo"
-         class="row">
-      <label for="fecha"
-             class="column"
-             [ngClass]="{'text-error': formUtils.noEsValido('fecha') }">Fecha: </label>
-      <input name="fecha"
-             type="date"
-             name="fecha"
-             class="column"
-             [ngClass]="{'input-error': formUtils.noEsValido('fecha') }"
-             formControlName="fecha">
-      <cf-validator [form]="nuevoForm"
-                    campo="fecha"
+    <section name="fecha-grupo">
+      <div name="fecha-input"
+           class="row">
+        <label for="fecha"
+               class="column"
+               [ngClass]="{'text-error': formUtils.noEsValido('fecha') }">Fecha: </label>
+        <input name="fecha"
+               type="date"
+               name="fecha"
+               class="column"
+               [ngClass]="{'input-error': formUtils.noEsValido('fecha') }"
+               formControlName="fecha">
+      </div>
+      <cf-validator campo="fecha"
+                    [form]="nuevoForm"
                     error="betweenTwoDates"
                     mensaje="La fecha debe de estar comprendida entre hoy y +- 5días">
       </cf-validator>
-    </div>
+    </section>
     <div class="row">
       <label for="importe"
              class="column"

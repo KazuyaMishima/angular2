@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   // Propiedades del componente, visibles desde la plantilla
-  title = 'Hola Mundo del Cash-Flow con Angular 2!';
+  title = 'Hola Mundo del Cash-Flow con Angular!';
 }

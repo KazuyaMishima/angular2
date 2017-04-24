@@ -13,14 +13,12 @@
       ],
       "index": "index.html",
       "main": "main.ts",
-      "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "cf",
       "styles": [
-        "assets/css/bootstrap.min.css",
-        "assets/css/bootstrap-theme.min.css",
+        "assets/milligram.min.css",
         "styles.css"
       ],
       "scripts": [],
@@ -38,13 +36,12 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "files": "src/**/*.ts",
+      "project": "src/tsconfig.json"
     },
     {
-      "project": "src/tsconfig.spec.json"
-    },
-    {
-      "project": "e2e/tsconfig.e2e.json"
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
     }
   ],
   "test": {
@@ -54,6 +51,8 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+      "inlineStyle": true
+    }
   }
 }

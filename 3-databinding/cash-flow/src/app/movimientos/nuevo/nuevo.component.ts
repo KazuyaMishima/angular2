@@ -12,7 +12,7 @@ export class NuevoComponent implements OnInit {
   /**
    * Muestra u oculta el formulario
    */
-  private formularioVisible = false;
+  public formularioVisible = false;
 
   /** Propiedad con el array para montar la lista de tipos de movimientos posibles */
   public tiposMovimiento: any[] = [
@@ -32,7 +32,7 @@ export class NuevoComponent implements OnInit {
   /**
    * Categorias filtradas para el tipo del movimiento actual
    */
-  private categorias: any[] = [];
+  public categorias: any[] = [];
 
   /**
    * Movimiento en curso
@@ -43,13 +43,13 @@ export class NuevoComponent implements OnInit {
    */
   movimientos: any[] = [];
 
-  constructor( ) { /** VACÍO */}
+  constructor() { /** VACÍO */ }
   /**
    * Evento que se lanaza al inicio del ciclo de vida del componente
    */
   ngOnInit() {
     this.movimiento = {
-      fecha : new Date(),
+      fecha: new Date(),
       importe: 0,
       tipo: this.tiposMovimiento[0].id
     };

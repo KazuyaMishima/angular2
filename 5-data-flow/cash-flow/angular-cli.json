@@ -15,9 +15,8 @@
       "main": "main.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
-      "tsconfig": "tsconfig.json",
-      "prefix": "cf", 
-      "mobile": false,
+      "tsconfig": "tsconfig.app.json",
+      "prefix": "cf",
       "styles": [
         "assets/milligram.min.css",
         "styles.css"
@@ -52,18 +51,8 @@
   },
   "defaults": {
     "styleExt": "css",
-    "prefixInterfaces": false,
-    "inline": {
-      "style": true,
-      "template": false
-    },
-    "spec": {
-      "class": false,
-      "component": true,
-      "directive": true,
-      "module": false,
-      "pipe": true,
-      "service": true
+    "component": {
+      "inlineStyle": true
     }
   }
 }

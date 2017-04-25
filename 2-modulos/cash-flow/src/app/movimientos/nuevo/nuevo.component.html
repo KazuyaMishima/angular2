@@ -5,9 +5,10 @@
     <button (click)="mostrarFormulario=true" name="mostrar">Mostrar Formulario</button>
   </span>
   <span [hidden]="!mostrarFormulario">
-    <button (click)="mostrarFormulario=false" name="ocultar" >Ocultar Formulario</button>
+    <button (click)="onClickOcultar()" name="ocultar" >Ocultar Formulario</button>
   </span>
 </header>
-<main *ngIf="mostrarFormulario" name="formulario">
+<main *ngIf="mostrarFormulario"
+      name="formulario">
   <h6>Aquí irá un formulario para entrada de movimientos</h6>
 </main>

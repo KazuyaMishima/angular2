@@ -9,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
  *  Componente para crear movimientos
  **/
 export class NuevoComponent implements OnInit {
-
+  public mostrarFormulario = false;
   constructor() { }
   ngOnInit() {
 
   }
+
+  onClickOcultar() {
+    this.mostrarFormulario = false;
+  }
+
 }

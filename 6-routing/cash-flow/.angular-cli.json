@@ -17,7 +17,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "op",
+      "prefix": "cf",
       "styles": [
         "assets/milligram.min.css",
         "styles.css"

@@ -1,4 +1,5 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 import { Categoria } from './modelos/categoria';
 import { Injectable } from '@angular/core';
 import { Movimiento } from './modelos/movimiento';
@@ -34,10 +35,10 @@ export class DatosService {
   /**
    * Base de datos de movimientos
    */
-  private movimientos: Movimiento[] = [];
+  public movimientos: Movimiento[] = [];
 
   /** Emisor de eventos relacionados con el almacén de movimientos */
-  private movimientos$: BehaviorSubject<Movimiento[]> = new BehaviorSubject<Movimiento[]>(this.movimientos);
+  private movimientos$: Subject<Movimiento[]> = new Subject<Movimiento[]>();
 
   constructor() { }
 

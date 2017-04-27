@@ -1,3 +1,5 @@
+import { ListaSmartComponent } from './lista-smart/lista-smart.component';
+import { NuevoSmartComponent } from './nuevo-smart/nuevo-smart.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { EditorComponent } from './editor/editor.component';
@@ -23,16 +25,16 @@ const routes: Routes = [
   {
     path: 'movimientos',
     component: MovimientosComponent, // tiene sus cosas y ... un router-oulet para sus hijos
-    // children: [ // PRÁCTICA rutas hijas, se verán dentro del router-oulet componente contenedor
-    //   {
-    //     path: 'nuevo', // la ruta real es movimientos/nuevo
-    //     component: NuevoComponent // debe ser autosuficiente
-    //   },
-    //   {
-    //     path: 'lista', // se ven dentro del componente MovimientosComponent
-    //     component: ListaComponent
-    //   }
-    // ]
+    children: [ // PRÁCTICA rutas hijas, se verán dentro del router-oulet componente contenedor
+      {
+        path: 'nuevo', // la ruta real es movimientos/nuevo
+        component: NuevoSmartComponent // debe ser autosuficiente
+      },
+      {
+        path: 'lista', // se ven dentro del componente MovimientosComponent
+        component: ListaSmartComponent
+      }
+    ]
   },
   {
     path: 'movimientos/:id', // parámetro variable id

@@ -1,3 +1,5 @@
+import { ListaSmartComponent } from './lista-smart/lista-smart.component';
+import { NuevoSmartComponent } from './nuevo-smart/nuevo-smart.component';
 import 'rxjs/add/observable/of';
 
 import { ActivatedRoute } from '@angular/router';
@@ -33,7 +35,9 @@ export const movimientosConfig = {
     EditorComponent,
     MovimientosComponent,
     NuevoComponent,
-    ListaComponent // este componente no se exporta
+    NuevoSmartComponent,
+    ListaComponent,
+    ListaSmartComponent
   ],
   exports: [ // Ya no exporta ningún componente
 
@@ -63,20 +67,20 @@ export const movimientosTestConfig = {
 }
 
 export const movimientosTestActivatedRouteConfig = {
-  imports: [ 
+  imports: [
     SharedModule,
-    RouterTestingModule 
+    RouterTestingModule
   ],
-  declarations: [ 
+  declarations: [
     EditorComponent,
     MovimientosComponent,
     NuevoComponent,
     ListaComponent
   ],
-  exports: [ 
+  exports: [
 
   ],
-  providers: [ 
+  providers: [
     DatosService,
     { provide: ActivatedRoute, useValue: new ActivatedRouteMock(Observable.of({ id: 1 })) }
   ]

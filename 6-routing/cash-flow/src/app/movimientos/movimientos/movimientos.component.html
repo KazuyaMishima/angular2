@@ -9,23 +9,22 @@
     <!--(eventos)="para recibir información de componentes hijos @Output"-->
 
 
-    <cf-nuevo
-      [tipos]="tipos"
-      [categorias]="categorias"
-      [movimiento]="movimiento"
-      (guardarMovimiento)="guardarMovimiento()"
-      (cambiarTipo)="cambiarTipo()">
+    <!--<cf-nuevo [tipos]="tipos"
+              [categorias]="categorias"
+              [movimiento]="movimiento"
+              (guardarMovimiento)="guardarMovimiento()"
+              (cambiarTipo)="cambiarTipo()">
     </cf-nuevo>
     <hr/>
     <cf-lista [movimientos]="movimientos">
-    </cf-lista>
-    
-    <!--
-      Práctica, migrar a un modelo con rutas hijas
+    </cf-lista>-->
+
+
+    <!--Práctica, migrar a un modelo con rutas hijas-->
     <nav>
       <a routerLink="/movimientos/nuevo">Nuevo Movimiento</a>
       <a routerLink="/movimientos/lista">Lista de Movimientos</a>
     </nav>
-    <router-outlet></router-outlet>-->
+    <router-outlet></router-outlet>
   </main>
 </section>

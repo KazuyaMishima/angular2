@@ -4,7 +4,7 @@ const colName = 'usuarios';
 const usuarios = [];
 const sesiones = [];
 
-var existeUsuario = usuario => usuarios.some(u => u.email == usuario.email);
+var existeUsuario = usuario => usuarios.some(u => u.email == usuario.email).length>0;
 
 var crearUsuario = usuario => usuarios.push(usuario);
 
@@ -31,13 +31,7 @@ function usarSeguridad(app, ruta) {
     app.use(ruta, (req, res, next) => {
         // la validación de la sesión es en memoria
         // jwt descifra y valida un token
-        let sesion = null;
-        const authorization = req.get('Authorization');
-        const pieces = authorization.split(' ');
-        if (pieces && pieces.length > 0) {
-            const sessionId = authorization.split(' ')[1];
-            sesion = jwt.verify(sessionId);
-        }
+        let sesion = getSesion(req);
         if (sesion) {
             req.usuario = sesion.email;
             next();
@@ -46,4 +40,16 @@ function usarSeguridad(app, ruta) {
                 .send('Credencial inválida');
         }
     })
+}
+
+
+function getSesion(req){
+    let sesion = null;
+    const authorization = req.get('Authorization');
+    const pieces = authorization.split(' ');
+    if (pieces && pieces.length > 0) {
+        const sessionId = authorization.split(' ')[1];
+        sesion = jwt.verify(sessionId);
+    }
+    return sesion;
 }

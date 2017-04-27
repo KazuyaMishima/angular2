@@ -10,13 +10,13 @@ module.exports = (app, ruta) => {
         .post((req, res) => {
             // inserción de un registro de sesión
             let sesion = req.body
-            let result = seguridad.esUsuarioValido(sesion)
-            if (result) {
+            let esValido = seguridad.esUsuarioValido(sesion)
+            if (esValido) {
                 console.log(`aceptado: ${sesion.email}`)
                 let nuevoSessionId = seguridad.nuevaSesion(sesion)
                 res.status(201).json(nuevoSessionId)
             } else {
-                console.log(`Credencial inválida: ${JSON.stringify(result)}`)
+                console.log(`Credencial inválida: ${JSON.stringify(esValido)}`)
                 res.status(401).send('Credencial inválida')
                 res.send()
             }

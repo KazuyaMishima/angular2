@@ -4,7 +4,7 @@
  */
 
 /**
- * @param {object} app - al aplicación de express
+ * @param {object} app - la aplicación de express
  * @param {object} express - el propio framework express
  * @return configura la aplicación
  */
@@ -28,13 +28,13 @@ module.exports.useMiddleware = app => {
     // Otro uso común del middleware es la monitorización de la aplicación
     // Interceptor de llamadas
     app.use((req, res, next) =>{
-        console.log(`recibida petición: ${req.url}`);
+        console.log(`req: ${req.method} > ${req.originalUrl}`);
         // Es muy importante continuar el flujo hacia la siguiente función
         next();
         // En caso de no hacerlo, se colgaría la llamada
     });
 
-    // este middleware se encargará de vigilar la entrada    
+    // este middleware se encargará de vigilar la entrada para rutas privadas   
     seguridad.usarSeguridad(app, '/api/priv/');
 }
 

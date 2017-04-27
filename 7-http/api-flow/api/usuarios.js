@@ -9,16 +9,16 @@ module.exports = (app, ruta) => {
     app.route(ruta)
         .post((req, res) => {
             // inserción de un registro de usuario
-            let usuario = req.body;
-            let result = seguridad.existeUsuario(usuario);
-            if (result.length > 0) {
+            const usuario = req.body;
+            const yaExiste = seguridad.existeUsuario(usuario);
+            if (yaExiste) {
                 console.log(`email ya registrado: ${usuario.email}`);
                 res.status(409).send(`email ${usuario.email} ya registrado`);
             } else {
                 console.log(`ok registrando: ${usuario.email}`);
                 seguridad.crearUsuario(usuario);
-                let nuevoSessionId = seguridad.nuevaSesion(usuario);
-                res.status(201).json(nuevoSessionId);
+                const nuevaSesion = seguridad.nuevaSesion(usuario);
+                res.status(201).json(nuevaSesion);
             }
         })
 }
